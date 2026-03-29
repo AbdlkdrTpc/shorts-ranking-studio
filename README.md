@@ -11,17 +11,20 @@ Tek dosyalı, tarayıcı tabanlı, YouTube, Instagram, X ve LinkedIn üreticiler
 
 ## Preview / Onizleme
 
-![Preview](assets/preview.png)
+![Preview](assets/preview-live.png)
 
-![Demo](assets/demo.gif)
+![Demo](assets/demo-live.gif)
+
+![Final Screen](assets/final-live.png)
 
 Direct assets:
 
 Dogrudan dosyalar:
 
-- `assets/preview.png`
-- `assets/demo.gif`
-- `assets/demo.mp4`
+- `assets/preview-live.png`
+- `assets/demo-live.gif`
+- `assets/demo-live.mp4`
+- `assets/final-live.png`
 
 ## English
 
