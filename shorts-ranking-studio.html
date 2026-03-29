@@ -1,0 +1,4869 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karistir Shorts Studio</title>
+  <style>
+    :root {
+      --page-bg: #f3ece2;
+      --panel-bg: rgba(255, 252, 247, 0.88);
+      --panel-border: rgba(89, 63, 42, 0.14);
+      --panel-shadow: 0 24px 80px rgba(56, 36, 20, 0.12);
+      --preview-shell: rgba(255, 255, 255, 0.44);
+      --preview-shadow: 0 30px 90px rgba(51, 31, 14, 0.24);
+      --stage-bg: linear-gradient(180deg, #fdf7ef 0%, #f2e1d0 48%, #e8d3bf 100%);
+      --stage-accent: #cb7a3e;
+      --stage-accent-soft: rgba(203, 122, 62, 0.18);
+      --stage-secondary: #2f1f14;
+      --title-start: #2f1f14;
+      --title-end: #c36d28;
+      --text-strong: #23170f;
+      --text-soft: rgba(35, 23, 15, 0.68);
+      --text-faint: rgba(35, 23, 15, 0.48);
+      --slot-bg: rgba(255, 255, 255, 0.68);
+      --slot-border: rgba(77, 46, 20, 0.14);
+      --slot-shadow: 0 14px 40px rgba(69, 38, 13, 0.08);
+      --slot-empty: rgba(255, 255, 255, 0.42);
+      --card-bg: rgba(255, 255, 255, 0.86);
+      --card-border: rgba(73, 41, 16, 0.12);
+      --card-shadow: 0 22px 55px rgba(57, 32, 12, 0.16);
+      --ghost-ring: rgba(255, 255, 255, 0.55);
+      --button-bg: #23170f;
+      --button-text: #fff8f2;
+      --button-muted: rgba(35, 23, 15, 0.08);
+      --success: #147650;
+      --danger: #a63a27;
+      --particle-a: rgba(255, 117, 117, 0.86);
+      --particle-b: rgba(235, 90, 45, 0.78);
+      --particle-c: rgba(255, 244, 232, 0.92);
+      --selection: rgba(203, 122, 62, 0.18);
+    }
+
+    body[data-theme="neon"] {
+      --page-bg: #080814;
+      --panel-bg: rgba(13, 13, 28, 0.86);
+      --panel-border: rgba(131, 99, 255, 0.24);
+      --panel-shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+      --preview-shell: rgba(86, 76, 163, 0.18);
+      --preview-shadow: 0 36px 120px rgba(0, 0, 0, 0.45);
+      --stage-bg: radial-gradient(circle at top, #25196b 0%, #16133a 38%, #09091b 100%);
+      --stage-accent: #7b66ff;
+      --stage-accent-soft: rgba(123, 102, 255, 0.18);
+      --stage-secondary: #a6f6ff;
+      --title-start: #ffffff;
+      --title-end: #73ecff;
+      --text-strong: #f4f7ff;
+      --text-soft: rgba(244, 247, 255, 0.74);
+      --text-faint: rgba(244, 247, 255, 0.48);
+      --slot-bg: rgba(20, 22, 49, 0.76);
+      --slot-border: rgba(124, 101, 255, 0.34);
+      --slot-shadow: 0 16px 55px rgba(10, 9, 32, 0.3);
+      --slot-empty: rgba(21, 24, 58, 0.48);
+      --card-bg: rgba(13, 15, 35, 0.84);
+      --card-border: rgba(128, 104, 255, 0.26);
+      --card-shadow: 0 26px 70px rgba(5, 4, 16, 0.36);
+      --ghost-ring: rgba(123, 102, 255, 0.24);
+      --button-bg: linear-gradient(135deg, #7b66ff 0%, #43d4ff 100%);
+      --button-text: #060913;
+      --button-muted: rgba(255, 255, 255, 0.08);
+      --success: #49f4b2;
+      --danger: #ff7a88;
+      --particle-a: rgba(255, 110, 206, 0.92);
+      --particle-b: rgba(127, 218, 255, 0.82);
+      --particle-c: rgba(255, 255, 255, 0.92);
+      --selection: rgba(123, 102, 255, 0.2);
+    }
+
+    body[data-theme="editorial"] {
+      --page-bg: #ebe7df;
+      --panel-bg: rgba(250, 248, 244, 0.92);
+      --panel-border: rgba(33, 30, 28, 0.12);
+      --panel-shadow: 0 26px 90px rgba(28, 22, 18, 0.12);
+      --preview-shell: rgba(0, 0, 0, 0.04);
+      --preview-shadow: 0 30px 90px rgba(31, 26, 22, 0.2);
+      --stage-bg: linear-gradient(180deg, #fcfbf8 0%, #ece7df 58%, #e2dbd0 100%);
+      --stage-accent: #c4332a;
+      --stage-accent-soft: rgba(196, 51, 42, 0.14);
+      --stage-secondary: #111111;
+      --title-start: #111111;
+      --title-end: #c4332a;
+      --text-strong: #111111;
+      --text-soft: rgba(17, 17, 17, 0.7);
+      --text-faint: rgba(17, 17, 17, 0.46);
+      --slot-bg: rgba(255, 255, 255, 0.72);
+      --slot-border: rgba(17, 17, 17, 0.12);
+      --slot-shadow: 0 14px 38px rgba(17, 17, 17, 0.08);
+      --slot-empty: rgba(255, 255, 255, 0.52);
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --card-border: rgba(17, 17, 17, 0.11);
+      --card-shadow: 0 20px 55px rgba(17, 17, 17, 0.13);
+      --ghost-ring: rgba(17, 17, 17, 0.08);
+      --button-bg: #111111;
+      --button-text: #fff8f3;
+      --button-muted: rgba(17, 17, 17, 0.08);
+      --success: #0f7b59;
+      --danger: #a92c2c;
+      --particle-a: rgba(196, 51, 42, 0.88);
+      --particle-b: rgba(240, 118, 82, 0.74);
+      --particle-c: rgba(255, 255, 255, 0.95);
+      --selection: rgba(196, 51, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.75) 0%, transparent 32%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.44) 0%, transparent 26%),
+        var(--page-bg);
+      color: var(--text-strong);
+      transition: background 260ms ease, color 260ms ease;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .shell {
+      height: 100vh;
+      height: 100dvh;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(320px, 410px) 1fr;
+      gap: 24px;
+      padding: 24px;
+      overflow: hidden;
+      align-items: stretch;
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+      border: 1px solid var(--panel-border);
+      background: var(--panel-bg);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      box-shadow: var(--panel-shadow);
+      overflow: hidden;
+    }
+
+    .panel__scroll {
+      min-height: 0;
+      overflow: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .panel__badge {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--stage-accent-soft);
+      color: var(--stage-accent);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .panel h1,
+    .panel h2,
+    .panel h3,
+    .panel p {
+      margin: 0;
+    }
+
+    .panel__head {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 2px 2px 4px;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .panel__head h1 {
+      font-size: clamp(1.16rem, 1.5vw, 1.32rem);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+    }
+
+    .panel__head p {
+      color: var(--text-soft);
+      line-height: 1.32;
+      max-width: 32ch;
+      font-size: 0.76rem;
+    }
+
+    .panel-card {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--panel-border);
+      background: rgba(255, 255, 255, 0.56);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    body[data-theme="neon"] .panel-card {
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .panel-card--flat {
+      gap: 10px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .panel-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .panel-group__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .panel-group__title {
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .panel-group__hint {
+      display: none;
+    }
+
+    .panel-divider {
+      height: 1px;
+      background: color-mix(in srgb, var(--panel-border) 88%, transparent);
+    }
+
+    body[data-theme="neon"] .panel-card--flat {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .field-group {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .field-row--stack {
+      grid-template-columns: 1fr;
+    }
+
+    .label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .hint {
+      color: var(--text-faint);
+      font-size: 0.68rem;
+      font-weight: 600;
+      max-width: 100%;
+    }
+
+    .label-row .hint {
+      display: none;
+    }
+
+    textarea,
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--text-strong);
+      padding: 10px 12px;
+      outline: none;
+      resize: vertical;
+      min-height: 42px;
+      transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    body[data-theme="neon"] textarea,
+    body[data-theme="neon"] input[type="text"],
+    body[data-theme="neon"] input[type="number"],
+    body[data-theme="neon"] select {
+      background: rgba(5, 8, 22, 0.7);
+    }
+
+    textarea:focus,
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      border-color: var(--stage-accent);
+      box-shadow: 0 0 0 4px var(--stage-accent-soft);
+      transform: translateY(-1px);
+    }
+
+    .pill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .toggle-pill {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      min-width: 0;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--panel-border);
+      background: rgba(255, 255, 255, 0.42);
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+      font-size: 0.77rem;
+      font-weight: 700;
+    }
+
+    .toggle-pill::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(120, 112, 102, 0.36);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      flex-shrink: 0;
+    }
+
+    body[data-theme="neon"] .toggle-pill {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    body[data-theme="neon"] .toggle-pill::before {
+      background: rgba(176, 185, 255, 0.28);
+    }
+
+    .toggle-pill input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toggle-pill.is-active {
+      border-color: var(--stage-accent);
+      background: var(--stage-accent-soft);
+      color: var(--text-strong);
+    }
+
+    .toggle-pill.is-active::before {
+      background: var(--stage-accent);
+      box-shadow:
+        0 0 0 4px color-mix(in srgb, var(--stage-accent-soft) 78%, transparent),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transform: scale(1.08);
+    }
+
+    .button-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .recording-controls {
+      display: grid;
+      gap: 8px;
+    }
+
+    .recording-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .recording-buttons .btn--ghost {
+      grid-column: 1 / -1;
+    }
+
+    .recording-status.is-live {
+      color: var(--danger);
+      font-weight: 800;
+    }
+
+    .recording-status.is-ready {
+      color: var(--success);
+      font-weight: 800;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 11px 12px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+      min-width: 0;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn--primary {
+      background: var(--button-bg);
+      color: var(--button-text);
+      box-shadow: none;
+    }
+
+    .btn--secondary {
+      background: var(--button-muted);
+      color: var(--text-strong);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid var(--panel-border);
+    }
+
+    .save-status {
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      padding-inline: 2px;
+    }
+
+    .editor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .editor-tools {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .count-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 38px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--panel-border);
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--text-strong);
+      font-size: 0.76rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    body[data-theme="neon"] .count-chip {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      padding: 0;
+      font-size: 1rem;
+      line-height: 1;
+      display: inline-grid;
+      place-items: center;
+    }
+
+    .icon-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .item-row {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 9px;
+      padding: 8px;
+      border-radius: 14px;
+      border: 1px solid var(--panel-border);
+      background: rgba(255, 255, 255, 0.24);
+      min-width: 0;
+    }
+
+    body[data-theme="neon"] .item-row {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .item-thumb {
+      position: relative;
+      height: 44px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--panel-border);
+      background:
+        linear-gradient(135deg, var(--stage-accent-soft), rgba(255, 255, 255, 0.28));
+      display: grid;
+      place-items: center;
+      color: var(--stage-accent);
+      font-weight: 800;
+      font-size: 0.76rem;
+    }
+
+    .item-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .item-fields {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .item-inline {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .item-index {
+      display: inline-grid;
+      place-items: center;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid var(--panel-border);
+      color: var(--text-soft);
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    body[data-theme="neon"] .item-index {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .item-row input[type="text"] {
+      min-height: 38px;
+      padding: 9px 11px;
+      border-radius: 12px;
+      font-size: 0.84rem;
+    }
+
+    .file-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .file-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      min-width: 0;
+      align-items: center;
+    }
+
+    .file-row input[type="file"] {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      color: var(--text-soft);
+      font-size: 0.76rem;
+      overflow: hidden;
+    }
+
+    .file-row .btn {
+      width: 100%;
+      min-width: 0;
+      padding: 9px 11px;
+      border-radius: 12px;
+      font-size: 0.76rem;
+    }
+
+    .item-fields > * {
+      min-width: 0;
+    }
+
+    .file-row input[type="file"]::file-selector-button {
+      margin-right: 8px;
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      background: var(--button-muted);
+      color: var(--text-strong);
+      padding: 8px 9px;
+      font: inherit;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mini-note {
+      display: none;
+    }
+
+    .shortcut-list {
+      display: none;
+    }
+
+    .background-tools {
+      display: grid;
+      gap: 10px;
+    }
+
+    .background-asset-block {
+      display: grid;
+      gap: 8px;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, var(--panel-border) 84%, transparent);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    body[data-theme="neon"] .background-asset-block {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    body[data-theme="neon"] .shortcut-list {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .shortcut-list strong {
+      color: var(--text-strong);
+    }
+
+    .shortcut-list__title {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 2px;
+    }
+
+    .preview-wrap {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .preview-shell {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 32px;
+      background: var(--preview-shell);
+      box-shadow: var(--preview-shadow);
+      padding: 22px;
+      overflow: auto;
+    }
+
+    .stage {
+      --slot-count: 5;
+      width: min(100%, 430px, calc((100dvh - 160px) * 9 / 16));
+      max-height: calc(100dvh - 160px);
+      aspect-ratio: 9 / 16;
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      background: var(--stage-bg);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 26px 70px rgba(0, 0, 0, 0.22);
+      isolation: isolate;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      padding: 20px 16px 18px;
+      color: var(--text-strong);
+    }
+
+    .stage.is-transparent-bg {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .stage.is-transparent-bg::before,
+    .stage.is-transparent-bg::after {
+      display: none;
+    }
+
+    .background-preview-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 180ms ease;
+      pointer-events: none;
+    }
+
+    .background-preview-layer.is-visible {
+      opacity: 1;
+    }
+
+    .background-preview {
+      position: absolute;
+      inset: 0;
+    }
+
+    .background-preview--checker {
+      background:
+        linear-gradient(45deg, rgba(221, 213, 204, 0.74) 25%, transparent 25%, transparent 75%, rgba(221, 213, 204, 0.74) 75%, rgba(221, 213, 204, 0.74) 100%),
+        linear-gradient(45deg, rgba(247, 241, 235, 0.92) 25%, transparent 25%, transparent 75%, rgba(247, 241, 235, 0.92) 75%, rgba(247, 241, 235, 0.92) 100%);
+      background-position: 0 0, 16px 16px;
+      background-size: 32px 32px;
+    }
+
+    body[data-theme="neon"] .background-preview--checker {
+      background:
+        linear-gradient(45deg, rgba(55, 57, 90, 0.76) 25%, transparent 25%, transparent 75%, rgba(55, 57, 90, 0.76) 75%, rgba(55, 57, 90, 0.76) 100%),
+        linear-gradient(45deg, rgba(20, 22, 46, 0.94) 25%, transparent 25%, transparent 75%, rgba(20, 22, 46, 0.94) 75%, rgba(20, 22, 46, 0.94) 100%);
+      background-position: 0 0, 16px 16px;
+      background-size: 32px 32px;
+    }
+
+    .background-preview img,
+    .background-preview video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .background-preview__empty {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 30px;
+      text-align: center;
+      font-size: 0.74rem;
+      line-height: 1.35;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(78, 63, 54, 0.56);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(188, 172, 156, 0.1) 0,
+          rgba(188, 172, 156, 0.1) 12px,
+          rgba(255, 255, 255, 0.02) 12px,
+          rgba(255, 255, 255, 0.02) 24px
+        );
+    }
+
+    body[data-theme="neon"] .background-preview__empty {
+      color: rgba(213, 220, 255, 0.58);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(115, 99, 255, 0.12) 0,
+          rgba(115, 99, 255, 0.12) 12px,
+          rgba(255, 255, 255, 0.02) 12px,
+          rgba(255, 255, 255, 0.02) 24px
+        );
+    }
+
+    .transparent-frame {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      border: 1.5px dashed rgba(112, 87, 68, 0.56);
+      opacity: 0;
+      pointer-events: none;
+      box-sizing: border-box;
+      transition: opacity 180ms ease;
+    }
+
+    .transparent-frame.is-visible {
+      opacity: 1;
+    }
+
+    body[data-theme="neon"] .transparent-frame {
+      border-color: rgba(174, 163, 255, 0.62);
+    }
+
+    .stage::before,
+    .stage::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(10px);
+    }
+
+    .stage::before {
+      width: 220px;
+      height: 220px;
+      top: -40px;
+      right: -70px;
+      background: radial-gradient(circle, var(--stage-accent-soft) 0%, transparent 74%);
+    }
+
+    .stage::after {
+      width: 240px;
+      height: 240px;
+      bottom: -70px;
+      left: -85px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.42) 0%, transparent 72%);
+    }
+
+    .stage__content {
+      position: relative;
+      z-index: 1;
+      display: contents;
+    }
+
+    .stage-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      padding-top: 4px;
+      padding-bottom: 18px;
+      transition: transform 260ms ease, filter 260ms ease, opacity 260ms ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stage-badge {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: var(--text-soft);
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      backdrop-filter: blur(8px);
+    }
+
+    .stage-title {
+      margin: 0;
+      font-size: clamp(1.72rem, 4vw, 2.34rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      max-width: 10ch;
+      background: linear-gradient(135deg, var(--title-start) 0%, var(--title-end) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-wrap: balance;
+      padding-bottom: 0.06em;
+    }
+
+    .stage-subtitle {
+      display: none;
+    }
+
+    .stage-main {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(150px, 0.92fr) minmax(0, 1.08fr);
+      gap: 16px;
+      align-items: stretch;
+      transition: transform 260ms ease, filter 260ms ease, opacity 260ms ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stage.is-final-visible .stage-top,
+    .stage.is-final-visible .stage-main {
+      transform: scale(0.982) translateY(-2px);
+      filter: blur(1.1px) saturate(0.9);
+      opacity: 0.88;
+    }
+
+    .ranking {
+      min-height: 0;
+      display: grid;
+      gap: clamp(5px, calc(14px - (var(--slot-count) * 0.72px)), 11px);
+      grid-template-rows: repeat(var(--slot-count), minmax(0, 1fr));
+      align-content: stretch;
+      margin-left: -4px;
+    }
+
+    .rank-slot {
+      position: relative;
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 4px;
+      align-items: stretch;
+      min-height: 0;
+      user-select: none;
+    }
+
+    .stage.is-compact-ranking .ranking {
+      gap: clamp(6px, calc(13px - (var(--slot-count) * 0.62px)), 9px);
+      margin-left: -5px;
+    }
+
+    .stage.is-compact-ranking .rank-slot {
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 4px;
+    }
+
+    .rank-card {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      align-items: stretch;
+      border-radius: 20px;
+      border: 1px solid var(--slot-border);
+      background: var(--slot-empty);
+      box-shadow: var(--slot-shadow);
+      padding:
+        clamp(5px, calc(9px - (var(--slot-count) * 0.35px)), 8px)
+        clamp(6px, calc(9px - (var(--slot-count) * 0.24px)), 9px);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      overflow: hidden;
+    }
+
+    .stage.is-compact-ranking .rank-card {
+      border-radius: 18px;
+      padding: 6px 8px;
+    }
+
+    .rank-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid transparent;
+      pointer-events: none;
+      transition: border-color 180ms ease;
+    }
+
+    .rank-slot.is-empty {
+      background: transparent;
+    }
+
+    .rank-slot.is-empty .rank-card {
+      background: var(--slot-empty);
+    }
+
+    .rank-slot.is-empty .slot-body {
+      grid-template-rows: 1fr;
+    }
+
+    .rank-slot.is-filled .rank-card {
+      background: var(--slot-bg);
+    }
+
+    .rank-slot.is-target .rank-card,
+    .rank-slot.is-selected .rank-card {
+      transform: translateY(-1px);
+      border-color: var(--stage-accent);
+      background: linear-gradient(180deg, var(--selection) 0%, var(--slot-bg) 100%);
+    }
+
+    .rank-slot.is-auto-fill .rank-card {
+      border-color: var(--stage-accent);
+      box-shadow:
+        0 0 0 2px color-mix(in srgb, var(--stage-accent) 18%, transparent),
+        var(--slot-shadow);
+      animation: slotAutoFillPulse 880ms ease;
+    }
+
+    .rank-slot.is-target .rank-card::after,
+    .rank-slot.is-selected .rank-card::after {
+      border-color: var(--stage-accent);
+    }
+
+    .slot-rank {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      align-self: center;
+      background: color-mix(in srgb, var(--stage-accent-soft) 62%, rgba(255, 255, 255, 0.72));
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      color: color-mix(in srgb, var(--text-strong) 82%, var(--stage-accent) 18%);
+      font-weight: 900;
+      font-size: 0.66rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+      flex-shrink: 0;
+      justify-self: start;
+    }
+
+    .stage.is-compact-ranking .slot-rank {
+      width: 20px;
+      height: 20px;
+      font-size: 0.62rem;
+      align-self: center;
+    }
+
+    .slot-body {
+      min-width: 0;
+      height: 100%;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      justify-items: center;
+      align-items: center;
+      align-content: center;
+      gap: clamp(2px, calc(10px - (var(--slot-count) * 0.75px)), 7px);
+      padding-block: clamp(0px, calc(4px - (var(--slot-count) * 0.4px)), 2px);
+      overflow: hidden;
+    }
+
+    .stage.is-compact-ranking .slot-body {
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-rows: 1fr;
+      justify-items: start;
+      align-items: center;
+      align-content: center;
+      gap: 8px;
+      padding-block: 0;
+    }
+
+    .slot-thumb {
+      width: min(100%, clamp(36px, calc(98px - (var(--slot-count) * 6.4px)), 78px));
+      max-height: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--slot-border);
+      background: rgba(255, 255, 255, 0.72);
+      justify-self: center;
+      align-self: center;
+      padding: clamp(4px, calc(10px - (var(--slot-count) * 0.52px)), 8px);
+      box-sizing: border-box;
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+      flex-shrink: 1;
+    }
+
+    .stage.is-compact-ranking .slot-thumb {
+      width: 34px;
+      min-width: 34px;
+      max-width: 34px;
+      height: 34px;
+      min-height: 34px;
+      max-height: 34px;
+      border-radius: 11px;
+      padding: 5px;
+      flex-shrink: 0;
+    }
+
+    .slot-thumb--ghost {
+      background: rgba(255, 255, 255, 0.34);
+      border-style: dashed;
+      opacity: 0.72;
+      box-shadow: none;
+    }
+
+    .slot-thumb img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      margin: auto;
+    }
+
+    .slot-copy {
+      min-width: 0;
+      display: grid;
+      gap: 2px;
+      align-content: center;
+      justify-items: center;
+      width: 100%;
+      text-align: center;
+    }
+
+    .stage.is-compact-ranking .slot-copy {
+      justify-items: start;
+      align-content: center;
+      text-align: left;
+    }
+
+    .slot-title {
+      font-size: clamp(0.6rem, calc(0.94rem - (var(--slot-count) * 0.03rem)), 0.84rem);
+      font-weight: 800;
+      line-height: 1.06;
+      color: var(--text-strong);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-word;
+      text-align: center;
+      width: 100%;
+    }
+
+    .stage.is-compact-ranking .slot-title {
+      font-size: clamp(0.72rem, calc(0.9rem - (var(--slot-count) * 0.015rem)), 0.82rem);
+      -webkit-line-clamp: 1;
+      text-align: left;
+      line-height: 1.05;
+    }
+
+    .slot-meta {
+      display: none;
+    }
+
+    .slot-placeholder {
+      color: var(--text-faint);
+      font-size: clamp(0.58rem, calc(0.9rem - (var(--slot-count) * 0.03rem)), 0.72rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .stage.is-compact-ranking .slot-placeholder {
+      font-size: 0.72rem;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .reveal-zone {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr);
+      gap: 0;
+      align-self: stretch;
+      align-items: center;
+      position: relative;
+      min-height: 0;
+    }
+
+    .card-caption {
+      display: none;
+    }
+
+    .current-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.34);
+      color: var(--text-soft);
+      white-space: nowrap;
+    }
+
+    .reveal-drag-shell {
+      justify-self: center;
+      align-self: center;
+      width: min(100%, 230px);
+      aspect-ratio: 0.76;
+      position: relative;
+      z-index: 1;
+    }
+
+    .shuffle-card {
+      width: min(100%, 230px);
+      aspect-ratio: 0.76;
+      justify-self: stretch;
+      align-self: stretch;
+      border-radius: 30px;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+      display: grid;
+      text-align: left;
+      position: relative;
+      overflow: visible;
+      transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+    }
+
+    .shuffle-card:hover {
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    .shuffle-card.is-locked {
+      cursor: default;
+    }
+
+    .shuffle-card.is-shuffling {
+      animation: deckShake 420ms ease-in-out infinite;
+    }
+
+    .shuffle-card__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    .deck-stack {
+      position: relative;
+      width: calc(100% - 16px);
+      height: calc(100% - 10px);
+      margin-right: 16px;
+      margin-bottom: 10px;
+    }
+
+    .deck-layer {
+      position: absolute;
+      inset: 0;
+      border-radius: 30px;
+      background: rgba(36, 40, 91, 0.5);
+      border: 1px solid rgba(122, 106, 255, 0.2);
+      box-shadow: 0 24px 52px rgba(7, 7, 18, 0.22);
+    }
+
+    .deck-layer--3 {
+      transform: translate(12px, 10px) rotate(1.6deg);
+      opacity: 0.34;
+    }
+
+    .deck-layer--2 {
+      transform: translate(8px, 6px) rotate(1deg);
+      opacity: 0.52;
+    }
+
+    .deck-layer--1 {
+      transform: translate(4px, 3px) rotate(0.5deg);
+      opacity: 0.72;
+    }
+
+    .deck-top {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto auto;
+      gap: 12px;
+      padding: 18px;
+      border-radius: 30px;
+      border: 1px solid rgba(122, 106, 255, 0.24);
+      background:
+        radial-gradient(circle at top right, rgba(123, 102, 255, 0.24) 0%, transparent 28%),
+        linear-gradient(180deg, rgba(38, 42, 95, 0.98) 0%, rgba(22, 24, 54, 0.98) 100%);
+      box-shadow: 0 26px 64px rgba(5, 6, 18, 0.34);
+    }
+
+    body[data-theme="premium"] .deck-top {
+      background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.16) 0%, transparent 28%),
+        linear-gradient(180deg, rgba(223, 203, 183, 0.96) 0%, rgba(199, 175, 147, 0.96) 100%);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    body[data-theme="editorial"] .deck-top {
+      background:
+        radial-gradient(circle at top right, rgba(196, 51, 42, 0.12) 0%, transparent 26%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(241, 235, 228, 0.98) 100%);
+      border-color: rgba(17, 17, 17, 0.1);
+    }
+
+    .deck-image {
+      width: 100%;
+      height: 100%;
+      min-height: 132px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, var(--stage-accent-soft), rgba(255, 255, 255, 0.18));
+      display: grid;
+      place-items: center;
+      color: var(--stage-secondary);
+      font-size: 0.86rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: filter 120ms ease, transform 120ms ease;
+      text-align: center;
+      padding: 14px;
+    }
+
+    body[data-theme="neon"] .deck-image {
+      color: #dce4ff;
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .deck-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .deck-image__placeholder {
+      font-size: 3rem;
+      line-height: 1;
+      font-weight: 800;
+      color: rgba(120, 120, 120, 0.82);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .deck-image__label {
+      font-size: 0.92rem;
+      line-height: 1.14;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      text-wrap: balance;
+      max-width: 100%;
+      color: currentColor;
+    }
+
+    .deck-title {
+      font-size: clamp(1.08rem, 2.4vw, 1.3rem);
+      line-height: 1.04;
+      font-weight: 900;
+      color: var(--text-strong);
+      text-wrap: balance;
+      transition: filter 120ms ease, transform 120ms ease;
+      text-align: center;
+      min-height: 1.3em;
+    }
+
+    body[data-theme="neon"] .deck-title {
+      color: #ffffff;
+    }
+
+    .shuffle-card.is-shuffling .deck-image,
+    .shuffle-card.is-shuffling .deck-title {
+      filter: blur(1.6px);
+      transform: translateY(1px);
+    }
+
+    @keyframes slotAutoFillPulse {
+      0% {
+        transform: translateY(0) scale(0.96);
+      }
+
+      45% {
+        transform: translateY(-2px) scale(1.02);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .reactions {
+      position: absolute;
+      right: 12px;
+      bottom: 18px;
+      width: min(16%, 68px);
+      height: 24%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .reaction {
+      position: absolute;
+      bottom: -14px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      opacity: 0;
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      animation: floatReaction var(--float-time, 4200ms) ease-in forwards;
+    }
+
+    .reaction svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .reaction[data-kind="heart"] {
+      color: rgba(198, 102, 122, 0.9);
+    }
+
+    .reaction[data-kind="like"] {
+      color: rgba(139, 111, 78, 0.9);
+    }
+
+    body[data-theme="neon"] .reaction[data-kind="heart"] {
+      color: rgba(255, 164, 196, 0.92);
+    }
+
+    body[data-theme="neon"] .reaction[data-kind="like"] {
+      color: rgba(190, 198, 255, 0.92);
+    }
+
+    .join-feed {
+      position: absolute;
+      right: 12px;
+      bottom: 18px;
+      z-index: 3;
+      width: min(44%, 168px);
+      display: grid;
+      gap: 8px;
+      justify-items: end;
+      pointer-events: none;
+      transition: opacity 220ms ease;
+    }
+
+    .join-feed.is-muted {
+      opacity: 0;
+    }
+
+    .camera-bubble {
+      position: absolute;
+      right: 12px;
+      bottom: 16px;
+      z-index: 3;
+      width: 74px;
+      height: 74px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.86);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.06)),
+        rgba(38, 24, 18, 0.2);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+      opacity: 0;
+      transform: translateY(8px) scale(0.94);
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 220ms ease;
+      display: grid;
+      place-items: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+    }
+
+    .camera-bubble.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .camera-bubble.has-stream {
+      background: #000;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .camera-bubble video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scaleX(-1);
+    }
+
+    .camera-bubble.has-stream video {
+      opacity: 1;
+    }
+
+    .camera-bubble__fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.56rem;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(81, 58, 42, 0.74);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08)),
+        rgba(255, 255, 255, 0.2);
+    }
+
+    .camera-bubble.has-stream .camera-bubble__fallback {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+
+    body[data-theme="neon"] .camera-bubble {
+      border-color: rgba(228, 230, 255, 0.82);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
+        rgba(15, 18, 38, 0.38);
+    }
+
+    body[data-theme="neon"] .camera-bubble__fallback {
+      color: rgba(228, 232, 255, 0.84);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+        rgba(15, 18, 38, 0.34);
+    }
+
+    .stage.has-camera-bubble .join-feed {
+      right: 12px;
+      bottom: 98px;
+      width: min(40%, 152px);
+    }
+
+    .stage.has-camera-bubble .reactions {
+      bottom: 100px;
+    }
+
+    .join-toast {
+      max-width: 100%;
+      padding: 7px 9px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(14px) saturate(1.08);
+      -webkit-backdrop-filter: blur(14px) saturate(1.08);
+      color: rgba(63, 42, 28, 0.88);
+      font-size: 0.62rem;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+      animation: joinToastInOut var(--join-time, 3600ms) ease forwards;
+    }
+
+    body[data-theme="neon"] .join-toast {
+      background: rgba(14, 16, 42, 0.42);
+      border-color: rgba(147, 126, 255, 0.2);
+      color: rgba(226, 232, 255, 0.9);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+    }
+
+    .join-toast__name {
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .join-toast__action {
+      opacity: 0.82;
+      margin-left: 4px;
+    }
+
+    .final-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: grid;
+      align-items: end;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 260ms ease, backdrop-filter 260ms ease, background 260ms ease;
+      padding: 20px;
+      background:
+        linear-gradient(180deg, rgba(4, 5, 10, 0.24) 0%, rgba(8, 9, 15, 0.68) 28%, rgba(5, 6, 12, 0.94) 100%);
+      backdrop-filter: blur(0px) saturate(1);
+      -webkit-backdrop-filter: blur(0px) saturate(1);
+    }
+
+    .final-overlay.is-visible {
+      opacity: 1;
+      backdrop-filter: blur(22px) saturate(0.78);
+      -webkit-backdrop-filter: blur(22px) saturate(0.78);
+    }
+
+    .stage.is-transparent-bg .final-overlay {
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .final-card {
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.56);
+      box-shadow:
+        0 36px 100px rgba(0, 0, 0, 0.34),
+        0 8px 30px rgba(36, 18, 8, 0.1);
+      padding: 18px;
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      gap: 10px;
+      max-height: 86%;
+      overflow: hidden;
+      transform: translateY(18px) scale(0.965);
+      opacity: 0;
+      transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 260ms ease, box-shadow 260ms ease;
+    }
+
+    body[data-theme="neon"] .final-card {
+      background: rgba(8, 9, 22, 0.96);
+      border-color: rgba(158, 139, 255, 0.28);
+      box-shadow:
+        0 36px 100px rgba(0, 0, 0, 0.52),
+        0 8px 36px rgba(81, 63, 202, 0.16);
+    }
+
+    .final-overlay.is-visible .final-card {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .background-tools {
+      display: grid;
+      gap: 12px;
+    }
+
+    .background-file-row {
+      display: grid;
+      gap: 8px;
+    }
+
+    .background-file-row .btn {
+      width: 100%;
+    }
+
+    .final-card h2,
+    .final-card p {
+      margin: 0;
+    }
+
+    .final-card h2 {
+      font-size: 1.36rem;
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .final-card p {
+      color: var(--text-soft);
+      line-height: 1.28;
+      font-size: 0.84rem;
+      font-weight: 700;
+      max-width: none;
+      overflow: visible;
+    }
+
+    .final-list {
+      display: grid;
+      gap: 8px;
+      min-height: 0;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .final-item {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      padding: 9px 11px;
+      border-radius: 18px;
+      border: 1px solid var(--slot-border);
+      background: var(--slot-bg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    .final-rank {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--stage-accent-soft);
+      color: var(--stage-accent);
+      font-weight: 900;
+      font-size: 0.92rem;
+    }
+
+    .final-copy {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .final-copy img {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--slot-border);
+    }
+
+    .final-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      line-height: 1.12;
+      word-break: break-word;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    body.record-mode .shell {
+      grid-template-columns: 1fr;
+      padding: 0;
+      gap: 0;
+    }
+
+    body.record-mode .panel {
+      display: none;
+    }
+
+    body.record-mode .preview-wrap {
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 16px;
+      display: grid;
+      place-items: center;
+    }
+
+    body.record-mode .preview-shell {
+      width: auto;
+      height: auto;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0 !important;
+    }
+
+    body.record-mode .stage {
+      width: min(calc((100vh - 32px) * 9 / 16), calc(100vw - 32px));
+      width: min(calc((100dvh - 32px) * 9 / 16), calc(100vw - 32px));
+      max-width: 100%;
+      max-height: calc(100vh - 32px);
+      max-height: calc(100dvh - 32px);
+      border-radius: 0 !important;
+    }
+
+    @keyframes cardPulse {
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-2px) scale(1.01);
+      }
+    }
+
+    @keyframes deckShake {
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+      }
+
+      25% {
+        transform: translateY(-2px) rotate(-0.8deg) scale(1.01);
+      }
+
+      50% {
+        transform: translateY(1px) rotate(0.9deg) scale(0.995);
+      }
+
+      75% {
+        transform: translateY(-1px) rotate(-0.5deg) scale(1.005);
+      }
+    }
+
+    @keyframes floatReaction {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.8) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.92;
+      }
+
+      85% {
+        opacity: 0.66;
+      }
+
+      100% {
+        transform: translate3d(var(--drift, 0px), var(--rise, -120px), 0) scale(1.08) rotate(var(--tilt, 0deg));
+        opacity: 0;
+      }
+    }
+
+    @keyframes joinToastInOut {
+      0% {
+        opacity: 0;
+        transform: translate3d(10px, 8px, 0) scale(0.98);
+      }
+
+      14% {
+        opacity: 0.88;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      74% {
+        opacity: 0.8;
+        transform: translate3d(0, -2px, 0) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate3d(2px, -10px, 0) scale(0.985);
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .shell {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow: auto;
+      }
+
+      .panel,
+      .preview-wrap {
+        height: auto;
+      }
+
+      .preview-shell {
+        min-height: 65vh;
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        overflow: auto;
+      }
+
+      .shell {
+        padding: 16px;
+        gap: 16px;
+        overflow: visible;
+      }
+
+      .panel__scroll {
+        padding: 20px;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .item-row {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-shell {
+        padding: 12px;
+      }
+
+      .stage {
+        width: min(100%, 440px);
+        border-radius: 28px;
+      }
+
+      body.record-mode .stage,
+      body.record-mode .preview-shell {
+        border-radius: 0 !important;
+      }
+
+      .stage-main {
+        grid-template-columns: minmax(128px, 0.86fr) minmax(0, 1.14fr);
+        gap: 12px;
+      }
+
+      .shuffle-card {
+        width: min(100%, 208px);
+      }
+
+      .stage-title {
+        max-width: 11ch;
+      }
+    }
+  </style>
+</head>
+<body data-theme="premium">
+  <div class="shell">
+    <aside class="panel">
+      <div class="panel__scroll">
+        <section class="panel__head panel-card panel-card--flat">
+          <span class="panel__badge">Shorts Ranking Studio</span>
+          <h1>Videoyu soldan kur, sahnede hemen gor.</h1>
+          <p>Ayarlari grupladim. Once konu ve tema, sonra efekt ve arka plan, en sonda oge listesi.</p>
+        </section>
+
+        <section class="panel-card">
+          <div class="panel-group">
+            <div class="panel-group__head">
+              <span class="panel-group__title">Icerik</span>
+              <span class="panel-group__hint">Hook ve kapanis</span>
+            </div>
+            <div class="field-group">
+              <div class="label-row">
+                <label for="titleInput">Konu basligi</label>
+                <span class="hint">Videonun ana cagrisi</span>
+              </div>
+              <textarea id="titleInput" rows="3" placeholder="Ornek: En iyi 5 yaz filmi"></textarea>
+            </div>
+
+            <div class="field-group">
+              <div class="label-row">
+                <label for="endingInput">Final metni</label>
+                <span class="hint">Yorum cagrisi</span>
+              </div>
+              <input id="endingInput" type="text" placeholder="Senin siralaman ne?">
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-card">
+          <div class="panel-group">
+            <div class="panel-group__head">
+              <span class="panel-group__title">Sahne</span>
+              <span class="panel-group__hint">Tema, sayi, yerlestirme</span>
+            </div>
+
+            <section class="field-row">
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="countInput">Oge sayisi</label>
+                  <span class="hint">1 ile 10</span>
+                </div>
+                <input id="countInput" type="number" min="1" max="10" step="1">
+              </div>
+
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="themeSelect">Tema</label>
+                  <span class="hint">Aninda degisir</span>
+                </div>
+                <select id="themeSelect">
+                  <option value="premium">Premium</option>
+                  <option value="neon">Neon Viral</option>
+                  <option value="editorial">Clean Editorial</option>
+                </select>
+              </div>
+            </section>
+
+            <div class="field-group">
+              <div class="label-row">
+                <span>Yerlestirme</span>
+                <span class="hint">Birden fazlasi acik olabilir</span>
+              </div>
+              <div class="pill-grid" id="modePills">
+                <label class="toggle-pill" data-mode-pill="click">
+                  <input id="modeClick" type="checkbox">
+                  <span>Slot tiklama</span>
+                </label>
+                <label class="toggle-pill" data-mode-pill="drag">
+                  <input id="modeDrag" type="checkbox">
+                  <span>Surukle birak</span>
+                </label>
+                <label class="toggle-pill" data-mode-pill="keyboard">
+                  <input id="modeKeyboard" type="checkbox">
+                  <span>Klavye</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-divider"></div>
+
+          <div class="panel-group">
+            <div class="panel-group__head">
+              <span class="panel-group__title">Efektler</span>
+              <span class="panel-group__hint">Akis ve dikkat unsurlari</span>
+            </div>
+
+            <div class="field-group">
+              <div class="pill-grid">
+                <label class="toggle-pill" data-effect-pill="hearts">
+                  <input id="heartsToggle" type="checkbox">
+                  <span>Kalp</span>
+                </label>
+                <label class="toggle-pill" data-effect-pill="likes">
+                  <input id="likesToggle" type="checkbox">
+                  <span>Like</span>
+                </label>
+                <label class="toggle-pill" data-effect-pill="joins">
+                  <input id="joinsToggle" type="checkbox">
+                  <span>Giris</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-divider"></div>
+
+          <div class="panel-group">
+            <div class="panel-group__head">
+              <span class="panel-group__title">Arka plan</span>
+              <span class="panel-group__hint">Transparent ve test zemini</span>
+            </div>
+
+            <div class="background-tools">
+              <div class="pill-grid">
+                <label class="toggle-pill" data-option-pill="transparentBackground">
+                  <input id="transparentBgToggle" type="checkbox">
+                  <span>Transparent</span>
+                </label>
+                <label class="toggle-pill" data-option-pill="cameraEnabled">
+                  <input id="cameraToggle" type="checkbox">
+                  <span>Mini kamera</span>
+                </label>
+              </div>
+
+              <section class="field-row field-row--stack">
+                <div class="field-group">
+                  <div class="label-row">
+                    <label for="backgroundPreviewSelect">Test zemini</label>
+                    <span class="hint">Bos alanlari gosterir</span>
+                  </div>
+                  <select id="backgroundPreviewSelect">
+                    <option value="none">Kapali</option>
+                    <option value="checker">Dama</option>
+                    <option value="image">Gorsel</option>
+                    <option value="video">Video</option>
+                  </select>
+                </div>
+
+                <div class="background-asset-block">
+                  <div class="label-row">
+                    <label for="backgroundAssetInput">Arka plan medyasi</label>
+                    <span class="hint">Lokal dosya</span>
+                  </div>
+                  <input id="backgroundAssetInput" type="file" accept="image/*,video/*">
+                  <button class="btn btn--ghost" id="backgroundAssetClearBtn" type="button">Medyayi temizle</button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-card panel-card--flat">
+          <div class="panel-group__head">
+            <span class="panel-group__title">Aksiyonlar</span>
+            <span class="panel-group__hint">Kayit ve sifirlama</span>
+          </div>
+          <section class="button-row">
+            <button class="btn btn--primary" id="recordToggleBtn" type="button">Kayit moduna gec</button>
+            <button class="btn btn--secondary" id="resetBtn" type="button">Oyunu sifirla</button>
+            <button class="btn btn--ghost" id="fillBtn" type="button">Ornek metinleri yenile</button>
+          </section>
+          <p class="save-status" id="saveStatus">Ayarlar bu tarayicida saklanir.</p>
+
+          <div class="panel-divider"></div>
+
+          <section class="recording-controls">
+            <div class="panel-group__head">
+              <span class="panel-group__title">Kayit</span>
+              <span class="panel-group__hint">1080 x 1920 export</span>
+            </div>
+            <div class="pill-grid">
+              <label class="toggle-pill" data-recording-pill="mic">
+                <input id="captureMicToggle" type="checkbox">
+                <span>Mikrofon</span>
+              </label>
+              <label class="toggle-pill" data-recording-pill="backgroundAudio">
+                <input id="captureVideoAudioToggle" type="checkbox">
+                <span>Video sesi</span>
+              </label>
+            </div>
+            <div class="recording-buttons">
+              <button class="btn btn--primary" id="startCaptureBtn" type="button">Kaydi baslat</button>
+              <button class="btn btn--secondary" id="stopCaptureBtn" type="button">Kaydi durdur</button>
+              <button class="btn btn--ghost" id="downloadCaptureBtn" type="button">Videoyu indir</button>
+            </div>
+            <p class="save-status recording-status" id="captureStatus">Kayit hazir. 9:16 sahne, kamera ve efektler exporta dahil olur.</p>
+          </section>
+        </section>
+
+        <section class="panel-card">
+          <div class="panel-group__head">
+            <span class="panel-group__title">Oge editleri</span>
+            <div class="editor-tools">
+              <button class="btn btn--ghost icon-btn" id="decreaseCountBtn" type="button" aria-label="Oge sayisini azalt">-</button>
+              <span class="count-chip" id="editorCountValue">5</span>
+              <button class="btn btn--ghost icon-btn" id="increaseCountBtn" type="button" aria-label="Oge sayisini artir">+</button>
+            </div>
+          </div>
+          <div class="editor-list" id="itemList"></div>
+        </section>
+
+        <section class="shortcut-list panel-card--flat">
+          <div class="shortcut-list__title">Kisayollar</div>
+          <div><strong>Space</strong> kart ac</div>
+          <div><strong>1-9 / 0</strong> siraya birak</div>
+          <div><strong>E</strong> kayit modu</div>
+          <div><strong>R</strong> sifirla</div>
+        </section>
+      </div>
+    </aside>
+
+    <main class="preview-wrap">
+      <section class="preview-shell">
+        <div class="stage" id="stage">
+          <div class="background-preview-layer" id="backgroundPreviewLayer" aria-hidden="true"></div>
+          <div class="transparent-frame" id="transparentFrame" aria-hidden="true"></div>
+          <div class="stage__content">
+            <header class="stage-top">
+              <div class="stage-badge" id="stageBadge">Shuffle ranking</div>
+              <h2 class="stage-title" id="stageTitle"></h2>
+              <div class="stage-subtitle" id="stageSubtitle"></div>
+            </header>
+
+            <div class="stage-main">
+              <div class="ranking" id="ranking"></div>
+
+              <section class="reveal-zone">
+                <div class="card-caption">
+                  <span id="cardCaption"></span>
+                  <span class="current-chip" id="poolChip">0 kart</span>
+                </div>
+                <div class="reveal-drag-shell" id="revealDragShell">
+                  <button class="shuffle-card" id="shuffleCard" type="button" aria-live="polite"></button>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="reactions" id="reactionsLayer" aria-hidden="true"></div>
+          <div class="join-feed" id="joinFeedLayer" aria-hidden="true"></div>
+          <div class="camera-bubble" id="cameraBubble" aria-hidden="true">
+            <video id="cameraVideo" autoplay muted playsinline></video>
+            <div class="camera-bubble__fallback" id="cameraFallback">Mini kamera</div>
+          </div>
+
+          <div class="final-overlay" id="finalOverlay">
+            <div class="final-card">
+              <h2 id="finalHeading"></h2>
+              <p id="finalText"></p>
+              <div class="final-list" id="finalList"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "karistir-shorts-studio-v1";
+      const THEMES = {
+        premium: "Premium",
+        neon: "Neon Viral",
+        editorial: "Clean Editorial"
+      };
+      const EXPORT_WIDTH = 1080;
+      const EXPORT_HEIGHT = 1920;
+      const EXPORT_THEME_STYLES = {
+        premium: {
+          stageTop: "#fdf7ef",
+          stageMid: "#f2e1d0",
+          stageBottom: "#e8d3bf",
+          accentGlow: "rgba(203, 122, 62, 0.18)",
+          titleStart: "#2f1f14",
+          titleEnd: "#c36d28",
+          deckTop: "#dfcbb7",
+          deckBottom: "#c7af93",
+          deckLayer: "rgba(70, 62, 120, 0.34)",
+          overlay: "rgba(7, 7, 14, 0.78)"
+        },
+        neon: {
+          stageTop: "#25196b",
+          stageMid: "#16133a",
+          stageBottom: "#09091b",
+          accentGlow: "rgba(123, 102, 255, 0.18)",
+          titleStart: "#ffffff",
+          titleEnd: "#73ecff",
+          deckTop: "#262a5f",
+          deckBottom: "#161836",
+          deckLayer: "rgba(36, 40, 91, 0.54)",
+          overlay: "rgba(4, 4, 12, 0.84)"
+        },
+        editorial: {
+          stageTop: "#fcfbf8",
+          stageMid: "#ece7df",
+          stageBottom: "#e2dbd0",
+          accentGlow: "rgba(196, 51, 42, 0.14)",
+          titleStart: "#111111",
+          titleEnd: "#c4332a",
+          deckTop: "#ffffff",
+          deckBottom: "#f1ebe4",
+          deckLayer: "rgba(180, 160, 150, 0.3)",
+          overlay: "rgba(9, 9, 11, 0.8)"
+        }
+      };
+      const REACTION_MARKUP = {
+        heart: "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M20.4 6.2a4.8 4.8 0 0 0-6.8 0l-1 1-1-1a4.8 4.8 0 0 0-6.8 6.8l7.8 7.4 7.8-7.4a4.8 4.8 0 0 0 0-6.8Z\"></path></svg>",
+        like: "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 10v10\"></path><path d=\"M14.8 9.2 15.7 6a2.2 2.2 0 0 0-4.1-1.6L7 10v10h9.3a2 2 0 0 0 2-1.6l1.2-5a2 2 0 0 0-2-2.4Z\"></path></svg>"
+      };
+      const JOIN_NAME_PARTS_A = ["gece", "mistik", "parfum", "yorum", "soft", "inci", "amber", "gizem", "queen", "lavanta", "isik", "nota"];
+      const JOIN_NAME_PARTS_B = ["sever", "kizi", "gibi", "daily", "yorumcu", "odasi", "dunyasi", "ruhu", "vibes", "edit", "arsiv", "sesi"];
+      const JOIN_ACTIONS = ["kanala girdi", "sohbete geldi", "seni izlemeye basladi"];
+      const DEFAULT_TITLES = [
+        "Secenek 1",
+        "Secenek 2",
+        "Secenek 3",
+        "Secenek 4",
+        "Secenek 5",
+        "Secenek 6",
+        "Secenek 7",
+        "Secenek 8",
+        "Secenek 9",
+        "Secenek 10"
+      ];
+
+      const refs = {
+        body: document.body,
+        titleInput: document.getElementById("titleInput"),
+        endingInput: document.getElementById("endingInput"),
+        countInput: document.getElementById("countInput"),
+        decreaseCountBtn: document.getElementById("decreaseCountBtn"),
+        increaseCountBtn: document.getElementById("increaseCountBtn"),
+        editorCountValue: document.getElementById("editorCountValue"),
+        themeSelect: document.getElementById("themeSelect"),
+        heartsToggle: document.getElementById("heartsToggle"),
+        likesToggle: document.getElementById("likesToggle"),
+        joinsToggle: document.getElementById("joinsToggle"),
+        transparentBgToggle: document.getElementById("transparentBgToggle"),
+        cameraToggle: document.getElementById("cameraToggle"),
+        backgroundPreviewSelect: document.getElementById("backgroundPreviewSelect"),
+        backgroundAssetInput: document.getElementById("backgroundAssetInput"),
+        backgroundAssetClearBtn: document.getElementById("backgroundAssetClearBtn"),
+        modeClick: document.getElementById("modeClick"),
+        modeDrag: document.getElementById("modeDrag"),
+        modeKeyboard: document.getElementById("modeKeyboard"),
+        modePills: document.getElementById("modePills"),
+        recordToggleBtn: document.getElementById("recordToggleBtn"),
+        resetBtn: document.getElementById("resetBtn"),
+        fillBtn: document.getElementById("fillBtn"),
+        captureMicToggle: document.getElementById("captureMicToggle"),
+        captureVideoAudioToggle: document.getElementById("captureVideoAudioToggle"),
+        startCaptureBtn: document.getElementById("startCaptureBtn"),
+        stopCaptureBtn: document.getElementById("stopCaptureBtn"),
+        downloadCaptureBtn: document.getElementById("downloadCaptureBtn"),
+        captureStatus: document.getElementById("captureStatus"),
+        saveStatus: document.getElementById("saveStatus"),
+        itemList: document.getElementById("itemList"),
+        stage: document.getElementById("stage"),
+        backgroundPreviewLayer: document.getElementById("backgroundPreviewLayer"),
+        transparentFrame: document.getElementById("transparentFrame"),
+        stageBadge: document.getElementById("stageBadge"),
+        stageTitle: document.getElementById("stageTitle"),
+        stageSubtitle: document.getElementById("stageSubtitle"),
+        ranking: document.getElementById("ranking"),
+        cardCaption: document.getElementById("cardCaption"),
+        poolChip: document.getElementById("poolChip"),
+        revealDragShell: document.getElementById("revealDragShell"),
+        shuffleCard: document.getElementById("shuffleCard"),
+        reactionsLayer: document.getElementById("reactionsLayer"),
+        joinFeedLayer: document.getElementById("joinFeedLayer"),
+        cameraBubble: document.getElementById("cameraBubble"),
+        cameraVideo: document.getElementById("cameraVideo"),
+        cameraFallback: document.getElementById("cameraFallback"),
+        finalOverlay: document.getElementById("finalOverlay"),
+        finalHeading: document.getElementById("finalHeading"),
+        finalText: document.getElementById("finalText"),
+        finalList: document.getElementById("finalList")
+      };
+
+      let state = normalizeState(loadState());
+      let dragState = null;
+      let shuffleTimer = null;
+      let shufflePreviewId = null;
+      let ambientTimer = null;
+      let autoFinishStartTimer = null;
+      let autoFinishCommitTimer = null;
+      let autoFillSlotIndex = null;
+      let joinToastCount = 0;
+      let lastJoinName = "";
+      let backgroundAssetUrl = "";
+      let backgroundAssetKind = "";
+      let cameraStream = null;
+      let cameraRequestId = 0;
+      let cameraRequestPending = false;
+      let exportCanvas = null;
+      let exportContext = null;
+      let exportAnimationFrame = 0;
+      let mediaRecorder = null;
+      let recordedChunks = [];
+      let recordedBlobUrl = "";
+      let exportStream = null;
+      let exportAudioContext = null;
+      let exportAudioDestination = null;
+      let exportMicStream = null;
+      let exportBackgroundAudioEl = null;
+      let exportBackgroundAudioSource = null;
+      let recordingState = {
+        active: false,
+        blobReady: false,
+        mimeType: "",
+        startedAt: 0
+      };
+
+      init();
+
+      function init() {
+        bindControls();
+        startAmbientLoop();
+        renderAll();
+      }
+
+      function bindControls() {
+        refs.titleInput.addEventListener("input", function (event) {
+          state.title = event.target.value;
+          renderStage();
+          saveState();
+        });
+
+        refs.endingInput.addEventListener("input", function (event) {
+          state.endingText = event.target.value;
+          renderFinalOverlay();
+          saveState();
+        });
+
+        refs.countInput.addEventListener("change", function (event) {
+          updateCount(Number(event.target.value));
+        });
+
+        refs.decreaseCountBtn.addEventListener("click", function () {
+          updateCount(state.count - 1);
+        });
+
+        refs.increaseCountBtn.addEventListener("click", function () {
+          updateCount(state.count + 1);
+        });
+
+        refs.themeSelect.addEventListener("change", function (event) {
+          state.theme = THEMES[event.target.value] ? event.target.value : "premium";
+          renderAll();
+        });
+
+        refs.heartsToggle.addEventListener("change", function () {
+          updateEffectToggle("hearts", refs.heartsToggle.checked);
+        });
+
+        refs.likesToggle.addEventListener("change", function () {
+          updateEffectToggle("likes", refs.likesToggle.checked);
+        });
+
+        refs.joinsToggle.addEventListener("change", function () {
+          updateEffectToggle("joins", refs.joinsToggle.checked);
+        });
+
+        refs.transparentBgToggle.addEventListener("change", function () {
+          state.transparentBackground = Boolean(refs.transparentBgToggle.checked);
+          if (state.transparentBackground && state.backgroundPreviewMode === "none") {
+            state.backgroundPreviewMode = "checker";
+          }
+          renderPanelState();
+          renderStage();
+          renderFinalOverlay();
+          saveState();
+        });
+
+        refs.cameraToggle.addEventListener("change", function () {
+          state.cameraEnabled = Boolean(refs.cameraToggle.checked);
+          renderPanelState();
+          renderStage();
+          saveState();
+        });
+
+        refs.backgroundPreviewSelect.addEventListener("change", function (event) {
+          state.backgroundPreviewMode = event.target.value;
+          if (state.transparentBackground && state.backgroundPreviewMode === "none") {
+            clearBackgroundPreviewAsset();
+          }
+          renderPanelState();
+          renderStage();
+          saveState();
+        });
+
+        refs.backgroundAssetInput.addEventListener("change", onBackgroundAssetChange);
+        refs.backgroundAssetClearBtn.addEventListener("click", function () {
+          clearBackgroundPreviewAsset();
+          state.backgroundPreviewMode = "none";
+          renderPanelState();
+          renderStage();
+          saveState();
+        });
+
+        refs.captureMicToggle.addEventListener("change", function () {
+          state.recordingOptions = Object.assign({}, state.recordingOptions, {
+            mic: Boolean(refs.captureMicToggle.checked)
+          });
+          renderPanelState();
+          saveState();
+        });
+
+        refs.captureVideoAudioToggle.addEventListener("change", function () {
+          state.recordingOptions = Object.assign({}, state.recordingOptions, {
+            backgroundAudio: Boolean(refs.captureVideoAudioToggle.checked)
+          });
+          renderPanelState();
+          saveState();
+        });
+
+        refs.modeClick.addEventListener("change", function () {
+          updatePlacementMode("click", refs.modeClick.checked);
+        });
+
+        refs.modeDrag.addEventListener("change", function () {
+          updatePlacementMode("drag", refs.modeDrag.checked);
+        });
+
+        refs.modeKeyboard.addEventListener("change", function () {
+          updatePlacementMode("keyboard", refs.modeKeyboard.checked);
+        });
+
+        refs.recordToggleBtn.addEventListener("click", toggleRecordMode);
+        refs.resetBtn.addEventListener("click", function () {
+          resetGame(true);
+        });
+        refs.fillBtn.addEventListener("click", refillItemTexts);
+        refs.startCaptureBtn.addEventListener("click", startStudioCapture);
+        refs.stopCaptureBtn.addEventListener("click", stopStudioCapture);
+        refs.downloadCaptureBtn.addEventListener("click", downloadStudioCapture);
+        refs.shuffleCard.addEventListener("click", onCardClick);
+
+        refs.shuffleCard.addEventListener("dragstart", function (event) {
+          if (!state.placementModes.drag || !state.currentRevealId || state.revealAnimating) {
+            event.preventDefault();
+            return;
+          }
+
+          dragState = { type: "current" };
+          event.dataTransfer.effectAllowed = "move";
+          event.dataTransfer.setData("text/plain", "current");
+        });
+
+        refs.shuffleCard.addEventListener("dragend", function () {
+          dragState = null;
+          clearDropTargets();
+        });
+
+        refs.itemList.addEventListener("input", onItemListInput);
+        refs.itemList.addEventListener("click", onItemListClick);
+        refs.itemList.addEventListener("change", onItemListChange);
+
+        refs.ranking.addEventListener("click", onRankingClick);
+        refs.ranking.addEventListener("dragstart", onRankingDragStart);
+        refs.ranking.addEventListener("dragover", onRankingDragOver);
+        refs.ranking.addEventListener("dragleave", onRankingDragLeave);
+        refs.ranking.addEventListener("drop", onRankingDrop);
+        refs.ranking.addEventListener("dragend", function () {
+          dragState = null;
+          clearDropTargets();
+        });
+
+        document.addEventListener("keydown", onKeyDown);
+        document.addEventListener("visibilitychange", function () {
+          if (!document.hidden) {
+            startAmbientLoop();
+          }
+        });
+        window.addEventListener("beforeunload", function () {
+          stopStudioCapture(true);
+          stopCameraStream();
+          clearBackgroundPreviewAsset();
+        });
+      }
+
+      function defaultState() {
+        const count = 5;
+        const items = Array.from({ length: count }, function (_, index) {
+          return createItem(DEFAULT_TITLES[index] || ("Secenek " + (index + 1)));
+        });
+
+        return {
+          title: "En iyi 5 secenegi siraliyorum",
+          endingText: "Ben boyle siraladim. Senin 1 numaran hangisi?",
+          count: count,
+          theme: "premium",
+          placementModes: {
+            click: true,
+            drag: true,
+            keyboard: true
+          },
+          effects: {
+            hearts: true,
+            likes: true,
+            joins: true
+          },
+          transparentBackground: false,
+          backgroundPreviewMode: "none",
+          backgroundPreviewAsset: "",
+          backgroundPreviewKind: "",
+          cameraEnabled: false,
+          recordingOptions: {
+            mic: true,
+            backgroundAudio: true
+          },
+          recordMode: false,
+          items: items,
+          ranking: Array(count).fill(null),
+          remainingIds: items.map(function (item) {
+            return item.id;
+          }),
+          currentRevealId: null,
+          selectedSlot: null,
+          showFinal: false,
+          revealAnimating: false
+        };
+      }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : defaultState();
+        } catch (error) {
+          return defaultState();
+        }
+      }
+
+      function saveState() {
+        const serializableState = {
+          title: state.title,
+          endingText: state.endingText,
+          count: state.count,
+          theme: state.theme,
+          placementModes: state.placementModes,
+          effects: state.effects,
+          transparentBackground: state.transparentBackground,
+          backgroundPreviewMode: state.backgroundPreviewMode === "checker" ? "checker" : "none",
+          recordingOptions: state.recordingOptions,
+          recordMode: state.recordMode,
+          items: state.items,
+          ranking: state.ranking,
+          remainingIds: state.remainingIds,
+          currentRevealId: state.currentRevealId,
+          selectedSlot: state.selectedSlot,
+          showFinal: state.showFinal
+        };
+
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(serializableState));
+          refs.saveStatus.textContent = "Ayarlar bu tarayicida saklandi.";
+        } catch (error) {
+          refs.saveStatus.textContent = "Kayit alani doldu. Buyuk gorseller sikistirilsa da saklanamamis olabilir.";
+        }
+      }
+
+      function normalizeState(input) {
+        const base = defaultState();
+        const raw = input && typeof input === "object" ? input : base;
+        const count = clamp(toInteger(raw.count, base.count), 1, 10);
+        const items = normalizeItems(raw.items, count);
+        const itemIds = new Set(items.map(function (item) {
+          return item.id;
+        }));
+        const ranking = Array.from({ length: count }, function (_, index) {
+          const value = Array.isArray(raw.ranking) ? raw.ranking[index] : null;
+          return itemIds.has(value) ? value : null;
+        });
+        const placedIds = new Set(ranking.filter(Boolean));
+        const currentRevealId = itemIds.has(raw.currentRevealId) ? raw.currentRevealId : null;
+        if (currentRevealId) {
+          placedIds.add(currentRevealId);
+        }
+
+        const remainingIds = items
+          .map(function (item) {
+            return item.id;
+          })
+          .filter(function (id) {
+            return !placedIds.has(id);
+          });
+
+        return {
+          title: typeof raw.title === "string" ? raw.title : base.title,
+          endingText: typeof raw.endingText === "string" ? raw.endingText : base.endingText,
+          count: count,
+          theme: THEMES[raw.theme] ? raw.theme : base.theme,
+          placementModes: normalizeModes(raw.placementModes),
+          effects: normalizeEffects(raw.effects, raw.reactionsEnabled, base.effects),
+          transparentBackground: typeof raw.transparentBackground === "boolean" ? raw.transparentBackground : base.transparentBackground,
+          backgroundPreviewMode: raw.backgroundPreviewMode === "checker" || (raw.transparentBackground === true && raw.backgroundPreviewMode !== "none") ? "checker" : "none",
+          backgroundPreviewAsset: "",
+          backgroundPreviewKind: "",
+          cameraEnabled: false,
+          recordingOptions: normalizeRecordingOptions(raw.recordingOptions),
+          // Acilista her zaman ana editor gorunsun; kayit modu oturumluk olsun.
+          recordMode: false,
+          items: items,
+          ranking: ranking,
+          remainingIds: remainingIds,
+          currentRevealId: currentRevealId,
+          // Secili slot ve final katmani da acilis deneyimini kilitlemesin.
+          selectedSlot: null,
+          showFinal: false,
+          revealAnimating: false
+        };
+      }
+
+      function normalizeItems(rawItems, count) {
+        const items = Array.isArray(rawItems) ? rawItems.slice(0, count) : [];
+        const normalized = items.map(function (item, index) {
+          const safe = item && typeof item === "object" ? item : {};
+          return {
+            id: typeof safe.id === "string" && safe.id ? safe.id : createId(),
+            text: typeof safe.text === "string" ? safe.text : (DEFAULT_TITLES[index] || ("Secenek " + (index + 1))),
+            image: typeof safe.image === "string" ? safe.image : ""
+          };
+        });
+
+        while (normalized.length < count) {
+          normalized.push(createItem(DEFAULT_TITLES[normalized.length] || ("Secenek " + (normalized.length + 1))));
+        }
+
+        return normalized;
+      }
+
+      function normalizeModes(rawModes) {
+        const modes = {
+          click: !rawModes || typeof rawModes.click !== "boolean" ? true : rawModes.click,
+          drag: !rawModes || typeof rawModes.drag !== "boolean" ? true : rawModes.drag,
+          keyboard: !rawModes || typeof rawModes.keyboard !== "boolean" ? true : rawModes.keyboard
+        };
+
+        if (!modes.click && !modes.drag && !modes.keyboard) {
+          modes.click = true;
+        }
+
+        return modes;
+      }
+
+      function normalizeEffects(rawEffects, legacyEnabled, fallback) {
+        const base = fallback || {
+          hearts: true,
+          likes: true,
+          joins: true
+        };
+
+        if (rawEffects && typeof rawEffects === "object") {
+          return {
+            hearts: typeof rawEffects.hearts === "boolean" ? rawEffects.hearts : base.hearts,
+            likes: typeof rawEffects.likes === "boolean" ? rawEffects.likes : base.likes,
+            joins: typeof rawEffects.joins === "boolean" ? rawEffects.joins : base.joins
+          };
+        }
+
+        if (typeof legacyEnabled === "boolean") {
+          return {
+            hearts: legacyEnabled,
+            likes: legacyEnabled,
+            joins: legacyEnabled
+          };
+        }
+
+        return base;
+      }
+
+      function normalizeRecordingOptions(rawOptions) {
+        return {
+          mic: !rawOptions || typeof rawOptions.mic !== "boolean" ? true : rawOptions.mic,
+          backgroundAudio: !rawOptions || typeof rawOptions.backgroundAudio !== "boolean" ? true : rawOptions.backgroundAudio
+        };
+      }
+
+      function createItem(text) {
+        return {
+          id: createId(),
+          text: text,
+          image: ""
+        };
+      }
+
+      function createId() {
+        return "item-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+      }
+
+      function toInteger(value, fallback) {
+        const parsed = Number(value);
+        return Number.isFinite(parsed) ? Math.round(parsed) : fallback;
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function isValidSlot(value, count) {
+        return Number.isInteger(value) && value >= 0 && value < count;
+      }
+
+      function renderAll() {
+        refs.body.dataset.theme = state.theme;
+        refs.body.classList.toggle("record-mode", state.recordMode);
+        refs.stage.style.setProperty("--slot-count", String(state.count));
+        renderPanelState();
+        renderItemList();
+        renderStage();
+        renderFinalOverlay();
+        saveState();
+      }
+
+      function renderPanelState() {
+        refs.titleInput.value = state.title;
+        refs.endingInput.value = state.endingText;
+        refs.countInput.value = String(state.count);
+        refs.editorCountValue.textContent = String(state.count);
+        refs.decreaseCountBtn.disabled = state.count <= 1;
+        refs.increaseCountBtn.disabled = state.count >= 10;
+        refs.themeSelect.value = state.theme;
+        refs.heartsToggle.checked = state.effects.hearts;
+        refs.likesToggle.checked = state.effects.likes;
+        refs.joinsToggle.checked = state.effects.joins;
+        refs.transparentBgToggle.checked = state.transparentBackground;
+        refs.cameraToggle.checked = state.cameraEnabled;
+        refs.backgroundPreviewSelect.value = state.backgroundPreviewMode;
+        refs.backgroundAssetInput.accept = state.backgroundPreviewMode === "video" ? "video/*" : "image/*,video/*";
+        refs.backgroundAssetInput.disabled = state.backgroundPreviewMode === "none" || state.backgroundPreviewMode === "checker";
+        refs.backgroundAssetClearBtn.disabled = !state.backgroundPreviewAsset && state.backgroundPreviewMode === "none";
+        refs.modeClick.checked = state.placementModes.click;
+        refs.modeDrag.checked = state.placementModes.drag;
+        refs.modeKeyboard.checked = state.placementModes.keyboard;
+        refs.recordToggleBtn.textContent = state.recordMode ? "Kayit modundan cik" : "Kayit moduna gec";
+        refs.captureMicToggle.checked = state.recordingOptions.mic;
+        refs.captureVideoAudioToggle.checked = state.recordingOptions.backgroundAudio;
+        refs.captureVideoAudioToggle.disabled = state.backgroundPreviewMode !== "video" || !state.backgroundPreviewAsset;
+        refs.startCaptureBtn.disabled = recordingState.active;
+        refs.stopCaptureBtn.disabled = !recordingState.active;
+        refs.downloadCaptureBtn.disabled = !recordingState.blobReady || recordingState.active;
+        refs.captureStatus.classList.toggle("is-live", recordingState.active);
+        refs.captureStatus.classList.toggle("is-ready", recordingState.blobReady && !recordingState.active);
+
+        document.querySelectorAll(".toggle-pill").forEach(function (pill) {
+          const mode = pill.getAttribute("data-mode-pill");
+          const effect = pill.getAttribute("data-effect-pill");
+          const option = pill.getAttribute("data-option-pill");
+          const recording = pill.getAttribute("data-recording-pill");
+          if (effect) {
+            pill.classList.toggle("is-active", Boolean(state.effects[effect]));
+            return;
+          }
+
+          if (recording) {
+            pill.classList.toggle("is-active", Boolean(state.recordingOptions[recording]));
+            return;
+          }
+
+          if (option) {
+            pill.classList.toggle("is-active", Boolean(state[option]));
+            return;
+          }
+
+          pill.classList.toggle("is-active", Boolean(state.placementModes[mode]));
+        });
+      }
+
+      function renderItemList() {
+        refs.itemList.innerHTML = state.items.map(function (item, index) {
+          const hasImage = Boolean(item.image);
+          return "" +
+            "<article class=\"item-row\" data-index=\"" + index + "\">" +
+              "<div class=\"item-thumb\">" +
+                (hasImage
+                  ? "<img src=\"" + escapeAttribute(item.image) + "\" alt=\"Oge gorseli\">"
+                  : "<span>" + (index + 1) + "</span>") +
+              "</div>" +
+              "<div class=\"item-fields\">" +
+                "<div class=\"item-inline\">" +
+                  "<span class=\"item-index\">" + (index + 1) + "</span>" +
+                  "<input type=\"text\" data-action=\"text\" value=\"" + escapeAttribute(item.text) + "\" placeholder=\"Baslik\">" +
+                "</div>" +
+                "<div class=\"file-row\">" +
+                  "<input type=\"text\" data-action=\"image\" value=\"" + escapeAttribute(item.image) + "\" placeholder=\"Gorsel URL\">" +
+                  "<div class=\"file-actions\">" +
+                    "<input type=\"file\" data-action=\"file\" accept=\"image/*\">" +
+                    "<button class=\"btn btn--ghost\" type=\"button\" data-action=\"clear-image\">Temizle</button>" +
+                  "</div>" +
+                "</div>" +
+              "</div>" +
+            "</article>";
+        }).join("");
+      }
+
+      function renderStage() {
+        refs.body.dataset.theme = state.theme;
+        refs.body.classList.toggle("record-mode", state.recordMode);
+        refs.stage.style.setProperty("--slot-count", String(state.count));
+        refs.stage.classList.toggle("is-final-visible", state.showFinal);
+        refs.stage.classList.toggle("is-compact-ranking", state.count >= 6);
+        refs.stage.classList.toggle("is-transparent-bg", state.transparentBackground);
+        refs.stage.classList.toggle("has-camera-bubble", state.cameraEnabled);
+        refs.joinFeedLayer.classList.toggle("is-muted", state.showFinal || !state.effects.joins);
+        refs.stageBadge.textContent = "";
+        refs.stageTitle.textContent = getDisplayTitle();
+        refs.stageSubtitle.textContent = getSubtitleText();
+        refs.cardCaption.textContent = getCardCaption();
+        refs.poolChip.textContent = getPoolChipText();
+        refs.shuffleCard.classList.toggle("is-shuffling", state.revealAnimating);
+        refs.shuffleCard.classList.toggle("is-locked", Boolean(state.currentRevealId) || state.revealAnimating);
+        refs.shuffleCard.setAttribute("draggable", state.placementModes.drag && Boolean(state.currentRevealId) && !state.revealAnimating ? "true" : "false");
+        refs.shuffleCard.innerHTML = renderCurrentCardMarkup();
+        renderBackgroundPreview();
+        syncCameraBubble();
+        renderRanking();
+      }
+
+      function renderBackgroundPreview() {
+        const isFrameVisible = state.transparentBackground;
+        const isPreviewVisible = state.transparentBackground && state.backgroundPreviewMode !== "none";
+        const previewKey = [
+          state.backgroundPreviewMode,
+          state.backgroundPreviewKind,
+          state.backgroundPreviewAsset ? state.backgroundPreviewAsset.slice(0, 64) : ""
+        ].join("|");
+
+        refs.transparentFrame.classList.toggle("is-visible", isFrameVisible);
+        refs.backgroundPreviewLayer.classList.toggle("is-visible", isPreviewVisible);
+
+        if (!isPreviewVisible) {
+          refs.backgroundPreviewLayer.innerHTML = "";
+          refs.backgroundPreviewLayer.dataset.previewKey = "";
+          return;
+        }
+
+        if (refs.backgroundPreviewLayer.dataset.previewKey === previewKey) {
+          return;
+        }
+
+        if (state.backgroundPreviewMode === "checker") {
+          refs.backgroundPreviewLayer.innerHTML = "<div class=\"background-preview background-preview--checker\"></div>";
+          refs.backgroundPreviewLayer.dataset.previewKey = previewKey;
+          return;
+        }
+
+        if (state.backgroundPreviewMode === "image") {
+          refs.backgroundPreviewLayer.innerHTML = state.backgroundPreviewAsset && state.backgroundPreviewKind === "image"
+            ? "<div class=\"background-preview\"><img src=\"" + escapeAttribute(state.backgroundPreviewAsset) + "\" alt=\"Test arka plani\"></div>"
+            : "<div class=\"background-preview\"><div class=\"background-preview__empty\">Test gorseli sec</div></div>";
+          refs.backgroundPreviewLayer.dataset.previewKey = previewKey;
+          return;
+        }
+
+        if (state.backgroundPreviewMode === "video") {
+          refs.backgroundPreviewLayer.innerHTML = state.backgroundPreviewAsset && state.backgroundPreviewKind === "video"
+            ? "<div class=\"background-preview\"><video src=\"" + escapeAttribute(state.backgroundPreviewAsset) + "\" autoplay muted loop playsinline></video></div>"
+            : "<div class=\"background-preview\"><div class=\"background-preview__empty\">Test videosu sec</div></div>";
+          refs.backgroundPreviewLayer.dataset.previewKey = previewKey;
+          return;
+        }
+
+        refs.backgroundPreviewLayer.innerHTML = "";
+        refs.backgroundPreviewLayer.dataset.previewKey = "";
+      }
+
+      function renderRanking() {
+        const isCompactRanking = state.count >= 6;
+        refs.ranking.innerHTML = state.ranking.map(function (itemId, index) {
+          const item = getItemById(itemId);
+          const hasImage = item && item.image;
+          const isSelected = state.selectedSlot === index;
+          const isAutoFill = autoFillSlotIndex === index;
+          const thumbMarkup = item
+            ? renderSlotThumb(item, hasImage, false, index)
+            : (isCompactRanking ? renderSlotThumb(null, false, true, index) : "");
+
+          return "" +
+            "<div class=\"rank-slot " +
+              (item ? "is-filled" : "is-empty") + " " +
+              (isSelected ? "is-selected " : "") +
+              (isAutoFill ? "is-auto-fill" : "") +
+              "\" data-slot=\"" + index + "\" draggable=\"" + (item && state.placementModes.drag ? "true" : "false") + "\">" +
+              "<div class=\"slot-rank\">" + (index + 1) + "</div>" +
+              "<div class=\"rank-card\">" +
+                "<div class=\"slot-body\">" +
+                  (item
+                    ? (thumbMarkup +
+                      "<div class=\"slot-copy\">" +
+                        "<div class=\"slot-title\">" + escapeHtml(getItemDisplayText(item, index)) + "</div>" +
+                      "</div>")
+                    : (thumbMarkup +
+                      "<div class=\"slot-copy\"><div class=\"slot-placeholder\">" + getEmptySlotText(index) + "</div></div>")) +
+                "</div>" +
+              "</div>" +
+            "</div>";
+        }).join("");
+      }
+
+      function renderSlotThumb(item, hasImage, ghostOnly, index) {
+        if (ghostOnly) {
+          return "<div class=\"slot-thumb slot-thumb--ghost\" aria-hidden=\"true\"></div>";
+        }
+
+        if (item && hasImage) {
+          return "<div class=\"slot-thumb\"><img src=\"" + escapeAttribute(item.image) + "\" alt=\"\"></div>";
+        }
+
+        return "";
+      }
+
+      function renderCurrentCardMarkup() {
+        const displayItem = getItemById(shufflePreviewId || state.currentRevealId);
+        const hasItem = Boolean(displayItem);
+        const cardTitle = getDeckTitle(displayItem);
+
+        return "" +
+          "<div class=\"shuffle-card__inner\">" +
+            "<div class=\"deck-stack\">" +
+              "<div class=\"deck-layer deck-layer--3\"></div>" +
+              "<div class=\"deck-layer deck-layer--2\"></div>" +
+              "<div class=\"deck-layer deck-layer--1\"></div>" +
+              "<div class=\"deck-top\">" +
+                "<div class=\"deck-image\">" +
+                  renderDeckImageContent(displayItem) +
+                "</div>" +
+                "<div class=\"deck-title\">" + escapeHtml(cardTitle) + "</div>" +
+              "</div>" +
+            "</div>" +
+          "</div>";
+      }
+
+      function renderFinalOverlay() {
+        refs.finalOverlay.classList.toggle("is-visible", state.showFinal);
+        refs.stage.classList.toggle("is-final-visible", state.showFinal);
+        refs.finalHeading.textContent = getDisplayTitle();
+        refs.finalText.textContent = state.endingText || "Ben boyle siraladim. Senin 1 numaran hangisi?";
+        refs.finalList.innerHTML = state.ranking.map(function (itemId, index) {
+          const item = getItemById(itemId);
+          return "" +
+            "<div class=\"final-item\">" +
+              "<div class=\"final-rank\">" + (index + 1) + "</div>" +
+              "<div class=\"final-copy\">" +
+                (item && item.image ? "<img src=\"" + escapeAttribute(item.image) + "\" alt=\"\">" : "") +
+                "<div class=\"final-title\">" + escapeHtml(item ? getItemDisplayText(item, index) : "Bos") + "</div>" +
+              "</div>" +
+            "</div>";
+        }).join("");
+      }
+
+      function syncCameraBubble() {
+        refs.cameraBubble.classList.toggle("is-visible", state.cameraEnabled);
+        refs.stage.classList.toggle("has-camera-bubble", state.cameraEnabled);
+        refs.cameraBubble.classList.toggle("has-stream", Boolean(cameraStream));
+
+        if (!state.cameraEnabled) {
+          stopCameraStream();
+          refs.cameraVideo.srcObject = null;
+          refs.cameraFallback.textContent = "Mini kamera";
+          refs.cameraBubble.classList.remove("has-stream");
+          return;
+        }
+
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          state.cameraEnabled = false;
+          refs.saveStatus.textContent = "Tarayici kamera acisini desteklemiyor.";
+          renderPanelState();
+          refs.cameraBubble.classList.remove("is-visible");
+          refs.stage.classList.remove("has-camera-bubble");
+          return;
+        }
+
+        if (cameraStream) {
+          if (refs.cameraVideo.srcObject !== cameraStream) {
+            refs.cameraVideo.srcObject = cameraStream;
+            refs.cameraVideo.play().catch(function () {});
+          }
+          refs.cameraBubble.classList.add("has-stream");
+          return;
+        }
+
+        if (cameraRequestPending) {
+          return;
+        }
+
+        const requestId = ++cameraRequestId;
+        cameraRequestPending = true;
+        refs.cameraFallback.textContent = "Kamera aciliyor";
+
+        navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: "user",
+            width: { ideal: 480 },
+            height: { ideal: 480 }
+          },
+          audio: false
+        }).then(function (stream) {
+          cameraRequestPending = false;
+          if (requestId !== cameraRequestId || !state.cameraEnabled) {
+            stream.getTracks().forEach(function (track) {
+              track.stop();
+            });
+            return;
+          }
+
+          cameraStream = stream;
+          refs.cameraVideo.srcObject = stream;
+          refs.cameraVideo.play().catch(function () {});
+          refs.cameraFallback.textContent = "Mini kamera";
+          refs.cameraBubble.classList.add("has-stream");
+          refs.saveStatus.textContent = "Mini kamera aktif.";
+        }).catch(function () {
+          cameraRequestPending = false;
+          state.cameraEnabled = false;
+          refs.cameraVideo.srcObject = null;
+          refs.cameraFallback.textContent = "Kamera izni";
+          refs.cameraBubble.classList.remove("has-stream");
+          refs.saveStatus.textContent = "Kamera izni verilmedi veya kamera acilamadi.";
+          renderPanelState();
+          refs.cameraBubble.classList.remove("is-visible");
+          refs.stage.classList.remove("has-camera-bubble");
+        });
+      }
+
+      function stopCameraStream() {
+        cameraRequestId += 1;
+        cameraRequestPending = false;
+        if (!cameraStream) {
+          return;
+        }
+
+        cameraStream.getTracks().forEach(function (track) {
+          track.stop();
+        });
+        cameraStream = null;
+        refs.cameraBubble.classList.remove("has-stream");
+      }
+
+      function getDisplayTitle() {
+        const title = state.title.trim();
+        return title || "Basligi buradan gir";
+      }
+
+      function getSubtitleText() {
+        return "";
+      }
+
+      function getCardCaption() {
+        return "";
+      }
+
+      function getPoolChipText() {
+        return state.remainingIds.length + " kart";
+      }
+
+      function getItemDisplayText(item, fallbackIndex) {
+        const safeText = item && typeof item.text === "string" ? item.text.trim() : "";
+        if (safeText) {
+          return safeText;
+        }
+
+        return "Oge " + ((fallbackIndex >= 0 ? fallbackIndex : state.items.findIndex(function (candidate) {
+          return candidate.id === item.id;
+        })) + 1);
+      }
+
+      function renderDeckImageContent(item) {
+        if (item && item.image) {
+          return "<img src=\"" + escapeAttribute(item.image) + "\" alt=\"\">";
+        }
+
+        if (item) {
+          return "<span class=\"deck-image__label\">" + escapeHtml(getItemDisplayText(item, state.items.findIndex(function (candidate) {
+            return candidate.id === item.id;
+          }))) + "</span>";
+        }
+
+        return "<span class=\"deck-image__placeholder\">?</span>";
+      }
+
+      function getDeckTitle(item) {
+        if (!item || !item.image) {
+          return "";
+        }
+
+        return getItemDisplayText(item, state.items.findIndex(function (candidate) {
+          return candidate.id === item.id;
+        }));
+      }
+
+      function getSlotMeta(index) {
+        return (index + 1) + ". sira";
+      }
+
+      function getEmptySlotText(index) {
+        return "Bos slot";
+      }
+
+      function getItemById(id) {
+        return state.items.find(function (item) {
+          return item.id === id;
+        }) || null;
+      }
+
+      function updateCount(nextCount) {
+        const count = clamp(toInteger(nextCount, state.count), 1, 10);
+        if (count === state.count) {
+          refs.countInput.value = String(state.count);
+          return;
+        }
+
+        const nextItems = normalizeItems(state.items, count);
+        state.count = count;
+        state.items = nextItems;
+        resetGame(false);
+      }
+
+      function refillItemTexts() {
+        state.items = state.items.map(function (item, index) {
+          return {
+            id: item.id,
+            image: item.image,
+            text: DEFAULT_TITLES[index] || ("Secenek " + (index + 1))
+          };
+        });
+        renderAll();
+      }
+
+      function onBackgroundAssetChange(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) {
+          return;
+        }
+
+        clearBackgroundPreviewAsset();
+
+        if (file.type.startsWith("video/")) {
+          backgroundAssetUrl = URL.createObjectURL(file);
+          backgroundAssetKind = "video";
+          state.backgroundPreviewMode = "video";
+        } else if (file.type.startsWith("image/")) {
+          backgroundAssetUrl = URL.createObjectURL(file);
+          backgroundAssetKind = "image";
+          state.backgroundPreviewMode = "image";
+        } else {
+          refs.saveStatus.textContent = "Sadece gorsel veya video dosyasi sec.";
+          event.target.value = "";
+          return;
+        }
+
+        state.backgroundPreviewAsset = backgroundAssetUrl;
+        state.backgroundPreviewKind = backgroundAssetKind;
+        if (!state.transparentBackground) {
+          state.transparentBackground = true;
+        }
+
+        event.target.value = "";
+        renderPanelState();
+        renderStage();
+        saveState();
+      }
+
+      function clearBackgroundPreviewAsset() {
+        if (backgroundAssetUrl && backgroundAssetUrl.startsWith("blob:")) {
+          URL.revokeObjectURL(backgroundAssetUrl);
+        }
+
+        backgroundAssetUrl = "";
+        backgroundAssetKind = "";
+        state.backgroundPreviewAsset = "";
+        state.backgroundPreviewKind = "";
+      }
+
+      function ensureExportCanvas() {
+        if (exportCanvas && exportContext) {
+          return;
+        }
+
+        exportCanvas = document.createElement("canvas");
+        exportCanvas.width = EXPORT_WIDTH;
+        exportCanvas.height = EXPORT_HEIGHT;
+        exportContext = exportCanvas.getContext("2d", {
+          alpha: true
+        });
+
+        if (exportContext) {
+          exportContext.imageSmoothingEnabled = true;
+          exportContext.imageSmoothingQuality = "high";
+        }
+      }
+
+      function chooseRecorderMimeType() {
+        if (!window.MediaRecorder || typeof window.MediaRecorder.isTypeSupported !== "function") {
+          return "";
+        }
+
+        const candidates = [
+          "video/webm;codecs=vp9,opus",
+          "video/webm;codecs=vp8,opus",
+          "video/webm",
+          "video/mp4;codecs=h264,aac",
+          "video/mp4"
+        ];
+
+        return candidates.find(function (mimeType) {
+          return window.MediaRecorder.isTypeSupported(mimeType);
+        }) || "";
+      }
+
+      function nextFrame() {
+        return new Promise(function (resolve) {
+          window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(resolve);
+          });
+        });
+      }
+
+      function resetRecordedBlob() {
+        if (recordedBlobUrl) {
+          URL.revokeObjectURL(recordedBlobUrl);
+        }
+        recordedBlobUrl = "";
+        recordedChunks = [];
+        recordingState.blobReady = false;
+      }
+
+      function setCaptureStatus(message, tone) {
+        refs.captureStatus.textContent = message;
+        refs.captureStatus.classList.remove("is-live", "is-ready");
+        if (tone === "live") {
+          refs.captureStatus.classList.add("is-live");
+        }
+        if (tone === "ready") {
+          refs.captureStatus.classList.add("is-ready");
+        }
+      }
+
+      async function startStudioCapture() {
+        if (recordingState.active) {
+          return;
+        }
+
+        if (!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream) {
+          setCaptureStatus("Bu tarayici profesyonel export kaydini desteklemiyor.", "");
+          return;
+        }
+
+        const mimeType = chooseRecorderMimeType();
+        if (!mimeType) {
+          setCaptureStatus("Uygun video codec bulunamadi. Chrome tabanli bir tarayici dene.", "");
+          return;
+        }
+
+        try {
+          resetRecordedBlob();
+          ensureExportCanvas();
+          state.recordMode = true;
+          renderAll();
+          await nextFrame();
+
+          const mixedAudioStream = await buildCaptureAudioStream();
+          exportStream = exportCanvas.captureStream(60);
+
+          if (mixedAudioStream) {
+            mixedAudioStream.getAudioTracks().forEach(function (track) {
+              exportStream.addTrack(track);
+            });
+          }
+
+          recordedChunks = [];
+          mediaRecorder = new MediaRecorder(exportStream, {
+            mimeType: mimeType,
+            videoBitsPerSecond: 14000000,
+            audioBitsPerSecond: 192000
+          });
+
+          mediaRecorder.addEventListener("dataavailable", function (event) {
+            if (event.data && event.data.size > 0) {
+              recordedChunks.push(event.data);
+            }
+          });
+
+          mediaRecorder.addEventListener("stop", finalizeStudioCapture);
+
+          recordingState.active = true;
+          recordingState.blobReady = false;
+          recordingState.mimeType = mimeType;
+          recordingState.startedAt = performance.now();
+          setCaptureStatus("Kayit suruyor. 1080 x 1920 export olusturuluyor...", "live");
+          renderPanelState();
+          renderExportFrame();
+          startExportRenderLoop();
+          mediaRecorder.start(250);
+        } catch (error) {
+          console.error(error);
+          cleanupCaptureSession();
+          recordingState.active = false;
+          recordingState.blobReady = false;
+          setCaptureStatus("Kayit baslatilamadi. Mikrofon veya video sesi iznini kontrol et.", "");
+          renderPanelState();
+        }
+      }
+
+      function stopStudioCapture(silent) {
+        const isSilent = Boolean(silent);
+
+        if (mediaRecorder && recordingState.active && mediaRecorder.state !== "inactive") {
+          mediaRecorder.stop();
+          stopExportRenderLoop();
+          if (!isSilent) {
+            setCaptureStatus("Kayit bitiriliyor. Dosya hazirlaniyor...", "live");
+            renderPanelState();
+          }
+          return;
+        }
+
+        cleanupCaptureSession();
+        recordingState.active = false;
+        if (!isSilent) {
+          renderPanelState();
+        }
+      }
+
+      function finalizeStudioCapture() {
+        stopExportRenderLoop();
+
+        if (recordedChunks.length) {
+          const blob = new Blob(recordedChunks, {
+            type: recordingState.mimeType || "video/webm"
+          });
+          recordedBlobUrl = URL.createObjectURL(blob);
+          recordingState.blobReady = true;
+          setCaptureStatus("Kayit hazir. Videoyu indir butonuyla alabilirsin.", "ready");
+        } else {
+          recordingState.blobReady = false;
+          setCaptureStatus("Kayit tamamlandi ama veri olusmadi. Tekrar dene.", "");
+        }
+
+        recordingState.active = false;
+        cleanupCaptureSession();
+        renderPanelState();
+      }
+
+      function cleanupCaptureSession() {
+        if (exportAnimationFrame) {
+          window.cancelAnimationFrame(exportAnimationFrame);
+          exportAnimationFrame = 0;
+        }
+
+        if (mediaRecorder) {
+          mediaRecorder.ondataavailable = null;
+          mediaRecorder.onstop = null;
+        }
+
+        if (exportStream) {
+          exportStream.getTracks().forEach(function (track) {
+            track.stop();
+          });
+        }
+
+        if (exportBackgroundAudioEl) {
+          exportBackgroundAudioEl.pause();
+          exportBackgroundAudioEl.src = "";
+          exportBackgroundAudioEl.remove();
+        }
+
+        if (exportMicStream) {
+          exportMicStream.getTracks().forEach(function (track) {
+            track.stop();
+          });
+        }
+
+        if (exportAudioContext) {
+          exportAudioContext.close().catch(function () {});
+        }
+
+        exportStream = null;
+        exportMicStream = null;
+        exportBackgroundAudioEl = null;
+        exportBackgroundAudioSource = null;
+        exportAudioDestination = null;
+        exportAudioContext = null;
+        mediaRecorder = null;
+      }
+
+      async function buildCaptureAudioStream() {
+        const wantsMic = Boolean(state.recordingOptions.mic);
+        const wantsBackgroundAudio = Boolean(
+          state.recordingOptions.backgroundAudio &&
+          state.backgroundPreviewMode === "video" &&
+          state.backgroundPreviewAsset
+        );
+
+        if (!wantsMic && !wantsBackgroundAudio) {
+          return null;
+        }
+
+        const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextCtor) {
+          return null;
+        }
+
+        exportAudioContext = new AudioContextCtor();
+        exportAudioDestination = exportAudioContext.createMediaStreamDestination();
+        await exportAudioContext.resume();
+
+        let hasAnyTrack = false;
+
+        if (wantsMic && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          try {
+            exportMicStream = await navigator.mediaDevices.getUserMedia({
+              audio: {
+                echoCancellation: true,
+                noiseSuppression: true,
+                autoGainControl: true
+              },
+              video: false
+            });
+            exportAudioContext.createMediaStreamSource(exportMicStream).connect(exportAudioDestination);
+            hasAnyTrack = true;
+          } catch (error) {
+            refs.saveStatus.textContent = "Mikrofon acilamadi. Video yine kaydedilecek.";
+          }
+        }
+
+        if (wantsBackgroundAudio) {
+          const previewVideo = refs.backgroundPreviewLayer.querySelector("video");
+          const sourceUrl = previewVideo ? (previewVideo.currentSrc || previewVideo.src) : "";
+
+          if (sourceUrl) {
+            try {
+              exportBackgroundAudioEl = document.createElement("video");
+              exportBackgroundAudioEl.src = sourceUrl;
+              exportBackgroundAudioEl.currentTime = previewVideo.currentTime || 0;
+              exportBackgroundAudioEl.loop = true;
+              exportBackgroundAudioEl.muted = true;
+              exportBackgroundAudioEl.playsInline = true;
+              exportBackgroundAudioEl.style.position = "fixed";
+              exportBackgroundAudioEl.style.width = "1px";
+              exportBackgroundAudioEl.style.height = "1px";
+              exportBackgroundAudioEl.style.opacity = "0";
+              exportBackgroundAudioEl.style.pointerEvents = "none";
+              document.body.appendChild(exportBackgroundAudioEl);
+              exportBackgroundAudioSource = exportAudioContext.createMediaElementSource(exportBackgroundAudioEl);
+              exportBackgroundAudioSource.connect(exportAudioDestination);
+              await exportBackgroundAudioEl.play();
+              hasAnyTrack = true;
+            } catch (error) {
+              if (exportBackgroundAudioEl) {
+                exportBackgroundAudioEl.remove();
+                exportBackgroundAudioEl = null;
+              }
+            }
+          }
+        }
+
+        if (!hasAnyTrack) {
+          if (exportAudioContext) {
+            await exportAudioContext.close().catch(function () {});
+          }
+          exportAudioDestination = null;
+          exportAudioContext = null;
+          return null;
+        }
+
+        return exportAudioDestination.stream;
+      }
+
+      function startExportRenderLoop() {
+        stopExportRenderLoop();
+
+        function tick() {
+          renderExportFrame();
+          exportAnimationFrame = window.requestAnimationFrame(tick);
+        }
+
+        tick();
+      }
+
+      function stopExportRenderLoop() {
+        if (exportAnimationFrame) {
+          window.cancelAnimationFrame(exportAnimationFrame);
+          exportAnimationFrame = 0;
+        }
+      }
+
+      function renderExportFrame() {
+        if (!exportContext || !refs.stage) {
+          return;
+        }
+
+        const stageRect = refs.stage.getBoundingClientRect();
+        if (!stageRect.width || !stageRect.height) {
+          return;
+        }
+
+        const scaleX = EXPORT_WIDTH / stageRect.width;
+        const scaleY = EXPORT_HEIGHT / stageRect.height;
+        const themeStyle = EXPORT_THEME_STYLES[state.theme] || EXPORT_THEME_STYLES.premium;
+
+        exportContext.save();
+        exportContext.setTransform(1, 0, 0, 1, 0, 0);
+        exportContext.clearRect(0, 0, EXPORT_WIDTH, EXPORT_HEIGHT);
+        exportContext.scale(scaleX, scaleY);
+
+        drawExportStageBackground(exportContext, stageRect, themeStyle);
+        drawExportBackgroundPreview(exportContext, stageRect);
+        drawExportTitle(exportContext, stageRect, themeStyle);
+        drawExportRanking(exportContext, stageRect);
+        drawExportDeck(exportContext, stageRect, themeStyle);
+        drawExportReactions(exportContext, stageRect);
+        drawExportJoinFeed(exportContext, stageRect);
+        drawExportCamera(exportContext, stageRect);
+        drawExportFinalOverlay(exportContext, stageRect, themeStyle);
+        drawExportFrameGuide(exportContext, stageRect);
+
+        exportContext.restore();
+      }
+
+      function drawExportStageBackground(context, stageRect, themeStyle) {
+        if (state.transparentBackground) {
+          return;
+        }
+
+        const gradient = context.createLinearGradient(0, 0, 0, stageRect.height);
+        gradient.addColorStop(0, themeStyle.stageTop);
+        gradient.addColorStop(0.58, themeStyle.stageMid);
+        gradient.addColorStop(1, themeStyle.stageBottom);
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, stageRect.width, stageRect.height);
+
+        context.save();
+        context.fillStyle = themeStyle.accentGlow;
+        context.filter = "blur(18px)";
+        context.beginPath();
+        context.arc(stageRect.width - 30, 80, 120, 0, Math.PI * 2);
+        context.fill();
+        context.beginPath();
+        context.arc(90, stageRect.height - 80, 120, 0, Math.PI * 2);
+        context.fill();
+        context.restore();
+      }
+
+      function drawExportBackgroundPreview(context, stageRect) {
+        if (!state.transparentBackground || state.backgroundPreviewMode === "none") {
+          return;
+        }
+
+        if (state.backgroundPreviewMode === "checker") {
+          drawCheckerPattern(context, stageRect.width, stageRect.height);
+          return;
+        }
+
+        const media = refs.backgroundPreviewLayer.querySelector("img, video");
+        if (!media) {
+          return;
+        }
+
+        drawMediaInRect(context, media, {
+          x: 0,
+          y: 0,
+          width: stageRect.width,
+          height: stageRect.height
+        }, "cover", 0, 0);
+      }
+
+      function drawExportTitle(context, stageRect, themeStyle) {
+        const titleRect = getLocalRect(refs.stageTitle, stageRect);
+        if (!titleRect) {
+          return;
+        }
+
+        const titleStyle = window.getComputedStyle(refs.stageTitle);
+        const lineHeight = toPixelValue(titleStyle.lineHeight, titleRect.height / 3.2);
+        const fontSize = toPixelValue(titleStyle.fontSize, 48);
+        const gradient = context.createLinearGradient(titleRect.x, titleRect.y, titleRect.x + titleRect.width, titleRect.y + titleRect.height);
+        gradient.addColorStop(0, themeStyle.titleStart);
+        gradient.addColorStop(1, themeStyle.titleEnd);
+
+        drawWrappedText(context, refs.stageTitle.textContent || "", titleRect, {
+          fontSize: fontSize,
+          lineHeight: lineHeight,
+          fontWeight: titleStyle.fontWeight || "900",
+          fontFamily: "\"Segoe UI\", Arial, sans-serif",
+          fillStyle: gradient,
+          textAlign: "center",
+          textBaseline: "top"
+        });
+      }
+
+      function drawExportRanking(context, stageRect) {
+        refs.ranking.querySelectorAll(".rank-slot").forEach(function (slot) {
+          const rankBadge = slot.querySelector(".slot-rank");
+          const rankCard = slot.querySelector(".rank-card");
+          const thumb = slot.querySelector(".slot-thumb");
+          const textNode = slot.querySelector(".slot-title, .slot-placeholder");
+
+          if (rankCard) {
+            drawStyledBox(context, getLocalRect(rankCard, stageRect), window.getComputedStyle(rankCard), {
+              shadowColor: "rgba(0, 0, 0, 0.10)",
+              shadowBlur: 16,
+              shadowY: 10
+            });
+          }
+
+          if (rankBadge) {
+            drawStyledBox(context, getLocalRect(rankBadge, stageRect), window.getComputedStyle(rankBadge));
+            drawTextInRect(context, rankBadge.textContent || "", getLocalRect(rankBadge, stageRect), window.getComputedStyle(rankBadge), "center");
+          }
+
+          if (thumb) {
+            drawStyledBox(context, getLocalRect(thumb, stageRect), window.getComputedStyle(thumb));
+            const thumbMedia = thumb.querySelector("img");
+            if (thumbMedia) {
+              const thumbStyle = window.getComputedStyle(thumb);
+              drawMediaInRect(context, thumbMedia, getInsetRect(getLocalRect(thumb, stageRect), toPixelValue(thumbStyle.paddingTop, 6)), "contain", 0, 0);
+            }
+          }
+
+          if (textNode) {
+            const textRect = getLocalRect(textNode, stageRect);
+            drawTextInRect(context, textNode.textContent || "", textRect, window.getComputedStyle(textNode), slot.closest(".stage.is-compact-ranking") ? "left" : "center");
+          }
+        });
+      }
+
+      function drawExportDeck(context, stageRect, themeStyle) {
+        const deckLayers = refs.shuffleCard.querySelectorAll(".deck-layer");
+        deckLayers.forEach(function (layer) {
+          drawStyledBox(context, getLocalRect(layer, stageRect), window.getComputedStyle(layer), {
+            shadowColor: "rgba(7, 7, 18, 0.18)",
+            shadowBlur: 20,
+            shadowY: 12
+          });
+        });
+
+        const deckTop = refs.shuffleCard.querySelector(".deck-top");
+        if (!deckTop) {
+          return;
+        }
+
+        const deckRect = getLocalRect(deckTop, stageRect);
+        drawGradientBox(context, deckRect, parseRadius(window.getComputedStyle(deckTop).borderRadius), themeStyle.deckTop, themeStyle.deckBottom, window.getComputedStyle(deckTop).borderColor);
+
+        const deckImage = deckTop.querySelector(".deck-image");
+        if (deckImage) {
+          const imageRect = getLocalRect(deckImage, stageRect);
+          drawStyledBox(context, imageRect, window.getComputedStyle(deckImage));
+          const deckImageMedia = deckImage.querySelector("img");
+          if (deckImageMedia) {
+            drawMediaInRect(context, deckImageMedia, imageRect, "cover", 0, parseRadius(window.getComputedStyle(deckImage).borderRadius));
+          } else {
+            drawTextInRect(context, deckImage.textContent || "", imageRect, window.getComputedStyle(deckImage), "center");
+          }
+        }
+
+        const deckTitle = deckTop.querySelector(".deck-title");
+        if (deckTitle) {
+          drawTextInRect(context, deckTitle.textContent || "", getLocalRect(deckTitle, stageRect), window.getComputedStyle(deckTitle), "center");
+        }
+      }
+
+      function drawExportReactions(context, stageRect) {
+        refs.reactionsLayer.querySelectorAll(".reaction").forEach(function (reaction) {
+          const rect = getLocalRect(reaction, stageRect);
+          const style = window.getComputedStyle(reaction);
+          const opacity = Number(style.opacity || 1);
+          if (!rect || opacity <= 0.02) {
+            return;
+          }
+
+          context.save();
+          context.globalAlpha = opacity;
+          context.strokeStyle = style.color;
+          context.lineWidth = Math.max(1.6, rect.width * 0.08);
+          if (reaction.dataset.kind === "heart") {
+            drawHeartShape(context, rect);
+          } else {
+            drawLikeShape(context, rect);
+          }
+          context.restore();
+        });
+      }
+
+      function drawExportJoinFeed(context, stageRect) {
+        refs.joinFeedLayer.querySelectorAll(".join-toast").forEach(function (toast) {
+          const rect = getLocalRect(toast, stageRect);
+          if (!rect) {
+            return;
+          }
+
+          const style = window.getComputedStyle(toast);
+          context.save();
+          context.globalAlpha = Number(style.opacity || 1);
+          drawStyledBox(context, rect, style, {
+            shadowColor: "rgba(0, 0, 0, 0.08)",
+            shadowBlur: 16,
+            shadowY: 10
+          });
+
+          const nameNode = toast.querySelector(".join-toast__name");
+          const actionNode = toast.querySelector(".join-toast__action");
+          const nameText = nameNode ? nameNode.textContent || "" : "";
+          const actionText = actionNode ? actionNode.textContent || "" : "";
+          drawSingleLineText(context, nameText + " " + actionText, {
+            x: rect.x + 10,
+            y: rect.y + rect.height / 2,
+            maxWidth: rect.width - 20,
+            fontSize: 11,
+            fontWeight: "800",
+            color: style.color,
+            align: "left",
+            baseline: "middle"
+          });
+          context.restore();
+        });
+      }
+
+      function drawExportCamera(context, stageRect) {
+        if (!state.cameraEnabled || !refs.cameraBubble.classList.contains("is-visible")) {
+          return;
+        }
+
+        const bubbleRect = getLocalRect(refs.cameraBubble, stageRect);
+        if (!bubbleRect) {
+          return;
+        }
+
+        const radius = bubbleRect.width / 2;
+        context.save();
+        context.beginPath();
+        context.arc(bubbleRect.x + radius, bubbleRect.y + radius, radius, 0, Math.PI * 2);
+        context.closePath();
+        context.clip();
+
+        if (cameraStream && refs.cameraVideo.readyState >= 2) {
+          context.translate(bubbleRect.x + bubbleRect.width, bubbleRect.y);
+          context.scale(-1, 1);
+          context.drawImage(refs.cameraVideo, 0, 0, bubbleRect.width, bubbleRect.height);
+        } else {
+          context.fillStyle = "rgba(255, 255, 255, 0.24)";
+          context.fillRect(bubbleRect.x, bubbleRect.y, bubbleRect.width, bubbleRect.height);
+        }
+        context.restore();
+
+        context.save();
+        context.strokeStyle = "rgba(255, 255, 255, 0.92)";
+        context.lineWidth = 3;
+        context.beginPath();
+        context.arc(bubbleRect.x + radius, bubbleRect.y + radius, radius - 1.5, 0, Math.PI * 2);
+        context.stroke();
+        context.restore();
+      }
+
+      function drawExportFinalOverlay(context, stageRect, themeStyle) {
+        if (!state.showFinal || !refs.finalOverlay.classList.contains("is-visible")) {
+          return;
+        }
+
+        context.save();
+        context.fillStyle = themeStyle.overlay;
+        context.fillRect(0, 0, stageRect.width, stageRect.height);
+        context.restore();
+
+        const finalCard = refs.finalOverlay.querySelector(".final-card");
+        if (!finalCard) {
+          return;
+        }
+
+        drawStyledBox(context, getLocalRect(finalCard, stageRect), window.getComputedStyle(finalCard), {
+          shadowColor: "rgba(0, 0, 0, 0.3)",
+          shadowBlur: 34,
+          shadowY: 18
+        });
+
+        drawTextInRect(context, refs.finalHeading.textContent || "", getLocalRect(refs.finalHeading, stageRect), window.getComputedStyle(refs.finalHeading), "left");
+        drawWrappedText(context, refs.finalText.textContent || "", getLocalRect(refs.finalText, stageRect), {
+          fontSize: 24,
+          lineHeight: 30,
+          fontWeight: "800",
+          fontFamily: "\"Segoe UI\", Arial, sans-serif",
+          fillStyle: window.getComputedStyle(refs.finalText).color,
+          textAlign: "left",
+          textBaseline: "top"
+        });
+
+        refs.finalList.querySelectorAll(".final-item").forEach(function (item) {
+          drawStyledBox(context, getLocalRect(item, stageRect), window.getComputedStyle(item));
+          const rank = item.querySelector(".final-rank");
+          const title = item.querySelector(".final-title");
+          const image = item.querySelector("img");
+          if (rank) {
+            drawStyledBox(context, getLocalRect(rank, stageRect), window.getComputedStyle(rank));
+            drawTextInRect(context, rank.textContent || "", getLocalRect(rank, stageRect), window.getComputedStyle(rank), "center");
+          }
+          if (image) {
+            drawMediaInRect(context, image, getLocalRect(image, stageRect), "cover", 0, parseRadius(window.getComputedStyle(image).borderRadius));
+          }
+          if (title) {
+            drawTextInRect(context, title.textContent || "", getLocalRect(title, stageRect), window.getComputedStyle(title), "left");
+          }
+        });
+      }
+
+      function drawExportFrameGuide(context, stageRect) {
+        if (!state.transparentBackground) {
+          return;
+        }
+
+        context.save();
+        context.strokeStyle = state.theme === "neon" ? "rgba(174, 163, 255, 0.62)" : "rgba(112, 87, 68, 0.56)";
+        context.lineWidth = 1.5;
+        context.setLineDash([8, 8]);
+        context.strokeRect(0.75, 0.75, stageRect.width - 1.5, stageRect.height - 1.5);
+        context.restore();
+      }
+
+      function downloadStudioCapture() {
+        if (!recordedBlobUrl) {
+          return;
+        }
+
+        const link = document.createElement("a");
+        link.href = recordedBlobUrl;
+        link.download = "karistir-shorts-" + new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-") + "." + getCaptureFileExtension();
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+
+      function getCaptureFileExtension() {
+        if (recordingState.mimeType.indexOf("mp4") !== -1) {
+          return "mp4";
+        }
+        return "webm";
+      }
+
+      function drawCheckerPattern(context, width, height) {
+        const size = 48;
+        for (let row = 0; row < Math.ceil(height / size); row += 1) {
+          for (let column = 0; column < Math.ceil(width / size); column += 1) {
+            const isDark = (row + column) % 2 === 0;
+            context.fillStyle = isDark ? "rgba(221, 213, 204, 0.74)" : "rgba(247, 241, 235, 0.92)";
+            context.fillRect(column * size, row * size, size, size);
+          }
+        }
+      }
+
+      function getLocalRect(element, stageRect) {
+        if (!element) {
+          return null;
+        }
+        const rect = element.getBoundingClientRect();
+        return {
+          x: rect.left - stageRect.left,
+          y: rect.top - stageRect.top,
+          width: rect.width,
+          height: rect.height
+        };
+      }
+
+      function getInsetRect(rect, inset) {
+        return {
+          x: rect.x + inset,
+          y: rect.y + inset,
+          width: Math.max(0, rect.width - (inset * 2)),
+          height: Math.max(0, rect.height - (inset * 2))
+        };
+      }
+
+      function parseRadius(value) {
+        return clamp(Math.round(parseFloat(String(value || "0")) || 0), 0, 40);
+      }
+
+      function toPixelValue(value, fallback) {
+        const parsed = parseFloat(String(value || ""));
+        return Number.isFinite(parsed) ? parsed : fallback;
+      }
+
+      function drawStyledBox(context, rect, style, shadowOptions) {
+        if (!rect || rect.width <= 0 || rect.height <= 0) {
+          return;
+        }
+
+        const radius = parseRadius(style.borderRadius);
+        context.save();
+        if (shadowOptions) {
+          context.shadowColor = shadowOptions.shadowColor || "transparent";
+          context.shadowBlur = shadowOptions.shadowBlur || 0;
+          context.shadowOffsetY = shadowOptions.shadowY || 0;
+        }
+        roundedRect(context, rect.x, rect.y, rect.width, rect.height, radius);
+        context.fillStyle = style.backgroundColor && style.backgroundColor !== "rgba(0, 0, 0, 0)" ? style.backgroundColor : "rgba(255, 255, 255, 0.7)";
+        context.fill();
+        context.shadowColor = "transparent";
+        if (style.borderColor && style.borderColor !== "rgba(0, 0, 0, 0)") {
+          context.lineWidth = Math.max(1, toPixelValue(style.borderWidth, 1));
+          context.strokeStyle = style.borderColor;
+          context.stroke();
+        }
+        context.restore();
+      }
+
+      function drawGradientBox(context, rect, radius, topColor, bottomColor, borderColor) {
+        if (!rect || rect.width <= 0 || rect.height <= 0) {
+          return;
+        }
+
+        const gradient = context.createLinearGradient(rect.x, rect.y, rect.x, rect.y + rect.height);
+        gradient.addColorStop(0, topColor);
+        gradient.addColorStop(1, bottomColor);
+        context.save();
+        context.shadowColor = "rgba(0, 0, 0, 0.24)";
+        context.shadowBlur = 26;
+        context.shadowOffsetY = 14;
+        roundedRect(context, rect.x, rect.y, rect.width, rect.height, radius);
+        context.fillStyle = gradient;
+        context.fill();
+        context.shadowColor = "transparent";
+        context.lineWidth = 1;
+        context.strokeStyle = borderColor || "rgba(255, 255, 255, 0.2)";
+        context.stroke();
+        context.restore();
+      }
+
+      function drawMediaInRect(context, media, rect, fit, padding, radius) {
+        if (!media || !rect || rect.width <= 0 || rect.height <= 0) {
+          return;
+        }
+
+        const insetRect = padding ? getInsetRect(rect, padding) : rect;
+        const sourceWidth = media.videoWidth || media.naturalWidth || media.width;
+        const sourceHeight = media.videoHeight || media.naturalHeight || media.height;
+        if (!sourceWidth || !sourceHeight) {
+          return;
+        }
+
+        const ratio = fit === "cover"
+          ? Math.max(insetRect.width / sourceWidth, insetRect.height / sourceHeight)
+          : Math.min(insetRect.width / sourceWidth, insetRect.height / sourceHeight);
+
+        const drawWidth = sourceWidth * ratio;
+        const drawHeight = sourceHeight * ratio;
+        const drawX = insetRect.x + ((insetRect.width - drawWidth) / 2);
+        const drawY = insetRect.y + ((insetRect.height - drawHeight) / 2);
+
+        context.save();
+        if (radius) {
+          roundedRect(context, insetRect.x, insetRect.y, insetRect.width, insetRect.height, radius);
+          context.clip();
+        }
+        try {
+          context.drawImage(media, drawX, drawY, drawWidth, drawHeight);
+        } catch (error) {}
+        context.restore();
+      }
+
+      function drawTextInRect(context, text, rect, style, align) {
+        if (!text || !rect) {
+          return;
+        }
+
+        const textAlign = align || (style.textAlign === "left" ? "left" : "center");
+        const fontSize = toPixelValue(style.fontSize, 16);
+        const lineHeight = toPixelValue(style.lineHeight, fontSize * 1.2);
+        drawWrappedText(context, text, rect, {
+          fontSize: fontSize,
+          lineHeight: lineHeight,
+          fontWeight: style.fontWeight || "700",
+          fontFamily: style.fontFamily || "\"Segoe UI\", Arial, sans-serif",
+          fillStyle: style.color || "#111",
+          textAlign: textAlign,
+          textBaseline: "middle",
+          singleLine: true
+        });
+      }
+
+      function drawWrappedText(context, text, rect, options) {
+        if (!text || !rect || rect.width <= 0 || rect.height <= 0) {
+          return;
+        }
+
+        const fontSize = options.fontSize || 16;
+        const lineHeight = options.lineHeight || fontSize * 1.2;
+        const fontWeight = options.fontWeight || "700";
+        const fontFamily = options.fontFamily || "\"Segoe UI\", Arial, sans-serif";
+        const fillStyle = options.fillStyle || "#111";
+        const textAlign = options.textAlign || "left";
+        const textBaseline = options.textBaseline || "top";
+        const maxLines = options.singleLine ? 1 : Math.max(1, Math.floor(rect.height / lineHeight));
+        const words = String(text).trim().split(/\s+/);
+        const lines = [];
+        let currentLine = "";
+
+        context.save();
+        context.font = fontWeight + " " + fontSize + "px " + fontFamily;
+
+        words.forEach(function (word) {
+          const trial = currentLine ? (currentLine + " " + word) : word;
+          if (context.measureText(trial).width <= rect.width || !currentLine) {
+            currentLine = trial;
+            return;
+          }
+          lines.push(currentLine);
+          currentLine = word;
+        });
+
+        if (currentLine) {
+          lines.push(currentLine);
+        }
+
+        const visibleLines = lines.slice(0, maxLines);
+        if (lines.length > maxLines && visibleLines.length) {
+          let lastLine = visibleLines[visibleLines.length - 1];
+          while (lastLine.length > 1 && context.measureText(lastLine + "…").width > rect.width) {
+            lastLine = lastLine.slice(0, -1);
+          }
+          visibleLines[visibleLines.length - 1] = lastLine + "…";
+        }
+
+        context.fillStyle = fillStyle;
+        context.textAlign = textAlign;
+        context.textBaseline = textBaseline;
+
+        let x = rect.x;
+        if (textAlign === "center") {
+          x = rect.x + (rect.width / 2);
+        } else if (textAlign === "right") {
+          x = rect.x + rect.width;
+        }
+
+        let y = rect.y;
+        if (textBaseline === "middle") {
+          y = rect.y + (rect.height / 2) - (((visibleLines.length - 1) * lineHeight) / 2);
+        }
+
+        visibleLines.forEach(function (line, index) {
+          context.fillText(line, x, y + (index * lineHeight), rect.width);
+        });
+
+        context.restore();
+      }
+
+      function drawSingleLineText(context, text, options) {
+        if (!text) {
+          return;
+        }
+
+        context.save();
+        context.font = (options.fontWeight || "700") + " " + (options.fontSize || 14) + "px \"Segoe UI\", Arial, sans-serif";
+        let output = text;
+        while (output.length > 1 && context.measureText(output).width > options.maxWidth) {
+          output = output.slice(0, -1);
+        }
+        if (output !== text) {
+          output = output.slice(0, -1) + "…";
+        }
+        context.fillStyle = options.color || "#111";
+        context.textAlign = options.align || "left";
+        context.textBaseline = options.baseline || "alphabetic";
+        context.fillText(output, options.x, options.y);
+        context.restore();
+      }
+
+      function roundedRect(context, x, y, width, height, radius) {
+        const safeRadius = Math.min(radius, width / 2, height / 2);
+        context.beginPath();
+        context.moveTo(x + safeRadius, y);
+        context.arcTo(x + width, y, x + width, y + height, safeRadius);
+        context.arcTo(x + width, y + height, x, y + height, safeRadius);
+        context.arcTo(x, y + height, x, y, safeRadius);
+        context.arcTo(x, y, x + width, y, safeRadius);
+        context.closePath();
+      }
+
+      function drawHeartShape(context, rect) {
+        const x = rect.x;
+        const y = rect.y;
+        const w = rect.width;
+        const h = rect.height;
+        context.beginPath();
+        context.moveTo(x + (w * 0.5), y + (h * 0.88));
+        context.bezierCurveTo(x + (w * 0.08), y + (h * 0.62), x + (w * 0.02), y + (h * 0.26), x + (w * 0.28), y + (h * 0.18));
+        context.bezierCurveTo(x + (w * 0.44), y + (h * 0.12), x + (w * 0.5), y + (h * 0.24), x + (w * 0.5), y + (h * 0.24));
+        context.bezierCurveTo(x + (w * 0.5), y + (h * 0.24), x + (w * 0.56), y + (h * 0.12), x + (w * 0.72), y + (h * 0.18));
+        context.bezierCurveTo(x + (w * 0.98), y + (h * 0.26), x + (w * 0.92), y + (h * 0.62), x + (w * 0.5), y + (h * 0.88));
+        context.stroke();
+      }
+
+      function drawLikeShape(context, rect) {
+        const x = rect.x;
+        const y = rect.y;
+        const w = rect.width;
+        const h = rect.height;
+        context.beginPath();
+        context.moveTo(x + (w * 0.22), y + (h * 0.4));
+        context.lineTo(x + (w * 0.22), y + (h * 0.82));
+        context.moveTo(x + (w * 0.22), y + (h * 0.4));
+        context.lineTo(x + (w * 0.42), y + (h * 0.4));
+        context.lineTo(x + (w * 0.52), y + (h * 0.2));
+        context.bezierCurveTo(x + (w * 0.62), y + (h * 0.06), x + (w * 0.78), y + (h * 0.12), x + (w * 0.74), y + (h * 0.34));
+        context.lineTo(x + (w * 0.94), y + (h * 0.34));
+        context.bezierCurveTo(x + (w * 1.02), y + (h * 0.34), x + (w * 1.02), y + (h * 0.58), x + (w * 0.94), y + (h * 0.58));
+        context.lineTo(x + (w * 0.84), y + (h * 0.82));
+        context.lineTo(x + (w * 0.22), y + (h * 0.82));
+        context.stroke();
+      }
+
+      function resetGame(saveAfter) {
+        stopShuffle();
+        clearAutoFinish();
+        clearJoinFeed();
+        state.ranking = Array(state.count).fill(null);
+        state.remainingIds = state.items.map(function (item) {
+          return item.id;
+        });
+        state.currentRevealId = null;
+        state.selectedSlot = null;
+        state.showFinal = false;
+        dragState = null;
+        clearDropTargets();
+        renderAll();
+        if (saveAfter !== false) {
+          saveState();
+        }
+      }
+
+      function updatePlacementMode(mode, checked) {
+        const nextModes = Object.assign({}, state.placementModes, { [mode]: Boolean(checked) });
+        if (!nextModes.click && !nextModes.drag && !nextModes.keyboard) {
+          nextModes[mode] = true;
+        }
+        state.placementModes = nextModes;
+        renderPanelState();
+        renderStage();
+        saveState();
+      }
+
+      function updateEffectToggle(effect, checked) {
+        state.effects = Object.assign({}, state.effects, { [effect]: Boolean(checked) });
+        if (!state.effects.joins) {
+          clearJoinFeed();
+        }
+        renderPanelState();
+        renderStage();
+        saveState();
+      }
+
+      function toggleRecordMode() {
+        state.recordMode = !state.recordMode;
+        if (state.recordMode && document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+        renderAll();
+      }
+
+      function onCardClick() {
+        if (state.revealAnimating) {
+          return;
+        }
+
+        if (state.currentRevealId) {
+          burstReactions(5);
+          return;
+        }
+
+        startReveal();
+      }
+
+      function startReveal() {
+        clearAutoFinish();
+        if (state.revealAnimating || state.currentRevealId) {
+          return;
+        }
+
+        if (!state.remainingIds.length) {
+          state.showFinal = state.ranking.every(Boolean);
+          renderFinalOverlay();
+          saveState();
+          return;
+        }
+
+        const pool = state.remainingIds.slice();
+        const finalId = pool[Math.floor(Math.random() * pool.length)];
+
+        if (pool.length === 1) {
+          state.showFinal = false;
+          state.currentRevealId = finalId;
+          state.remainingIds = [];
+          renderAll();
+          burstReactions(6);
+          maybeScheduleAutoFinish();
+          return;
+        }
+
+        state.revealAnimating = true;
+        state.showFinal = false;
+        renderStage();
+        renderFinalOverlay();
+        burstReactions(4);
+
+        let steps = 0;
+        shufflePreviewId = pool[Math.floor(Math.random() * pool.length)];
+        shuffleTimer = window.setInterval(function () {
+          shufflePreviewId = pool[Math.floor(Math.random() * pool.length)];
+          renderStage();
+          steps += 1;
+
+          if (steps >= 18) {
+            stopShuffle();
+            shufflePreviewId = null;
+            state.revealAnimating = false;
+            state.currentRevealId = finalId;
+            state.remainingIds = state.remainingIds.filter(function (id) {
+              return id !== finalId;
+            });
+            renderAll();
+            burstReactions(8);
+          }
+        }, 72);
+      }
+
+      function stopShuffle() {
+        if (shuffleTimer) {
+          window.clearInterval(shuffleTimer);
+          shuffleTimer = null;
+        }
+        state.revealAnimating = false;
+        shufflePreviewId = null;
+      }
+
+      function clearAutoFinish() {
+        if (autoFinishStartTimer) {
+          window.clearTimeout(autoFinishStartTimer);
+          autoFinishStartTimer = null;
+        }
+
+        if (autoFinishCommitTimer) {
+          window.clearTimeout(autoFinishCommitTimer);
+          autoFinishCommitTimer = null;
+        }
+
+        autoFillSlotIndex = null;
+      }
+
+      function getEmptySlotIndexes() {
+        return state.ranking.reduce(function (indexes, itemId, index) {
+          if (!itemId) {
+            indexes.push(index);
+          }
+          return indexes;
+        }, []);
+      }
+
+      function maybeScheduleAutoFinish() {
+        clearAutoFinish();
+
+        if (state.revealAnimating) {
+          return;
+        }
+
+        const emptySlots = getEmptySlotIndexes();
+        if (emptySlots.length !== 1) {
+          return;
+        }
+
+        const finalId = state.currentRevealId && state.remainingIds.length === 0
+          ? state.currentRevealId
+          : (!state.currentRevealId && state.remainingIds.length === 1 ? state.remainingIds[0] : null);
+
+        if (!finalId) {
+          return;
+        }
+
+        const targetSlot = emptySlots[0];
+
+        autoFinishStartTimer = window.setTimeout(function () {
+          autoFinishStartTimer = null;
+
+          const liveEmptySlots = getEmptySlotIndexes();
+          const liveFinalId = state.currentRevealId && state.remainingIds.length === 0
+            ? state.currentRevealId
+            : (!state.currentRevealId && state.remainingIds.length === 1 ? state.remainingIds[0] : null);
+
+          if (
+            state.revealAnimating ||
+            liveFinalId !== finalId ||
+            liveEmptySlots.length !== 1 ||
+            liveEmptySlots[0] !== targetSlot
+          ) {
+            return;
+          }
+
+          autoFillSlotIndex = targetSlot;
+          if (!state.currentRevealId) {
+            state.currentRevealId = finalId;
+            state.remainingIds = [];
+            state.showFinal = false;
+            renderAll();
+            burstReactions(6);
+          } else {
+            renderStage();
+          }
+
+          autoFinishCommitTimer = window.setTimeout(function () {
+            autoFinishCommitTimer = null;
+
+            if (state.currentRevealId !== finalId || state.ranking[targetSlot]) {
+              autoFillSlotIndex = null;
+              renderStage();
+              saveState();
+              return;
+            }
+
+            state.ranking[targetSlot] = finalId;
+            state.currentRevealId = null;
+            state.selectedSlot = null;
+            state.showFinal = state.ranking.every(Boolean);
+            renderAll();
+            burstReactions(9);
+
+            window.setTimeout(function () {
+              autoFillSlotIndex = null;
+              renderStage();
+              saveState();
+            }, 900);
+          }, 1050);
+        }, 1600);
+      }
+
+      function onRankingClick(event) {
+        const slot = event.target.closest("[data-slot]");
+        if (!slot) {
+          return;
+        }
+
+        const slotIndex = Number(slot.getAttribute("data-slot"));
+        if (!isValidSlot(slotIndex, state.count)) {
+          return;
+        }
+
+        if (state.placementModes.click && state.currentRevealId) {
+          placeCurrentInSlot(slotIndex);
+          return;
+        }
+
+        if (!state.placementModes.click) {
+          return;
+        }
+
+        if (state.selectedSlot === null && state.ranking[slotIndex]) {
+          state.selectedSlot = slotIndex;
+          state.showFinal = false;
+          renderStage();
+          saveState();
+          return;
+        }
+
+        if (state.selectedSlot === slotIndex) {
+          state.selectedSlot = null;
+          renderStage();
+          saveState();
+          return;
+        }
+
+        if (state.selectedSlot !== null) {
+          movePlacedItem(state.selectedSlot, slotIndex);
+        }
+      }
+
+      function placeCurrentInSlot(slotIndex) {
+        if (!state.currentRevealId || !isValidSlot(slotIndex, state.count)) {
+          return;
+        }
+
+        clearAutoFinish();
+        const displacedId = state.ranking[slotIndex];
+        state.ranking[slotIndex] = state.currentRevealId;
+        state.currentRevealId = displacedId || null;
+        state.selectedSlot = null;
+        state.showFinal = state.ranking.every(Boolean) && !state.currentRevealId;
+        renderAll();
+        burstReactions(displacedId ? 6 : 9);
+        maybeScheduleAutoFinish();
+      }
+
+      function movePlacedItem(fromIndex, toIndex) {
+        if (!isValidSlot(fromIndex, state.count) || !isValidSlot(toIndex, state.count)) {
+          return;
+        }
+
+        clearAutoFinish();
+        const nextRanking = state.ranking.slice();
+        const temp = nextRanking[fromIndex];
+        nextRanking[fromIndex] = nextRanking[toIndex];
+        nextRanking[toIndex] = temp;
+        state.ranking = nextRanking;
+        state.selectedSlot = null;
+        state.showFinal = state.ranking.every(Boolean) && !state.currentRevealId;
+        renderAll();
+        burstReactions(5);
+        maybeScheduleAutoFinish();
+      }
+
+      function onRankingDragStart(event) {
+        if (!state.placementModes.drag) {
+          event.preventDefault();
+          return;
+        }
+
+        const slot = event.target.closest("[data-slot]");
+        if (!slot) {
+          event.preventDefault();
+          return;
+        }
+
+        const slotIndex = Number(slot.getAttribute("data-slot"));
+        if (!state.ranking[slotIndex]) {
+          event.preventDefault();
+          return;
+        }
+
+        dragState = { type: "slot", index: slotIndex };
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", String(slotIndex));
+      }
+
+      function onRankingDragOver(event) {
+        if (!dragState || !state.placementModes.drag) {
+          return;
+        }
+
+        const slot = event.target.closest("[data-slot]");
+        if (!slot) {
+          return;
+        }
+
+        event.preventDefault();
+        clearDropTargets();
+        slot.classList.add("is-target");
+      }
+
+      function onRankingDragLeave(event) {
+        const slot = event.target.closest("[data-slot]");
+        if (slot) {
+          slot.classList.remove("is-target");
+        }
+      }
+
+      function onRankingDrop(event) {
+        if (!dragState || !state.placementModes.drag) {
+          return;
+        }
+
+        const slot = event.target.closest("[data-slot]");
+        if (!slot) {
+          return;
+        }
+
+        event.preventDefault();
+        clearDropTargets();
+
+        const slotIndex = Number(slot.getAttribute("data-slot"));
+        if (dragState.type === "current") {
+          placeCurrentInSlot(slotIndex);
+          dragState = null;
+          return;
+        }
+
+        if (dragState.type === "slot") {
+          movePlacedItem(dragState.index, slotIndex);
+          dragState = null;
+        }
+      }
+
+      function clearDropTargets() {
+        refs.ranking.querySelectorAll(".rank-slot.is-target").forEach(function (slot) {
+          slot.classList.remove("is-target");
+        });
+      }
+
+      function onKeyDown(event) {
+        if (isTypingTarget(event.target)) {
+          return;
+        }
+
+        if (event.key === "e" || event.key === "E") {
+          event.preventDefault();
+          toggleRecordMode();
+          return;
+        }
+
+        if (event.key === "r" || event.key === "R") {
+          event.preventDefault();
+          resetGame(true);
+          return;
+        }
+
+        if (event.key === "Escape") {
+          event.preventDefault();
+          state.showFinal = false;
+          state.selectedSlot = null;
+          renderStage();
+          renderFinalOverlay();
+          saveState();
+          return;
+        }
+
+        if (event.key === " " || event.code === "Space") {
+          event.preventDefault();
+          startReveal();
+          return;
+        }
+
+        if (!state.placementModes.keyboard) {
+          return;
+        }
+
+        const slotIndex = mapKeyToSlot(event.key, event.code);
+        if (slotIndex === null || slotIndex >= state.count) {
+          return;
+        }
+
+        event.preventDefault();
+
+        if (state.currentRevealId) {
+          placeCurrentInSlot(slotIndex);
+          return;
+        }
+
+        if (state.selectedSlot !== null) {
+          movePlacedItem(state.selectedSlot, slotIndex);
+          return;
+        }
+
+        if (state.ranking[slotIndex]) {
+          state.selectedSlot = slotIndex;
+          renderStage();
+          saveState();
+        }
+      }
+
+      function mapKeyToSlot(key, code) {
+        if (/^[1-9]$/.test(key)) {
+          return Number(key) - 1;
+        }
+        if (key === "0") {
+          return 9;
+        }
+        if (/^Numpad[1-9]$/.test(code)) {
+          return Number(code.replace("Numpad", "")) - 1;
+        }
+        if (code === "Numpad0") {
+          return 9;
+        }
+        return null;
+      }
+
+      function isTypingTarget(target) {
+        return target instanceof HTMLElement && (
+          target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
+          target.isContentEditable
+        );
+      }
+
+      function onItemListInput(event) {
+        const row = event.target.closest("[data-index]");
+        if (!row) {
+          return;
+        }
+
+        const index = Number(row.getAttribute("data-index"));
+        if (!state.items[index]) {
+          return;
+        }
+
+        const action = event.target.getAttribute("data-action");
+        if (action === "text") {
+          state.items[index].text = event.target.value;
+        } else if (action === "image") {
+          state.items[index].image = event.target.value.trim();
+        }
+
+        renderStage();
+        renderFinalOverlay();
+        saveState();
+      }
+
+      function onItemListClick(event) {
+        const button = event.target.closest("[data-action='clear-image']");
+        if (!button) {
+          return;
+        }
+
+        const row = button.closest("[data-index]");
+        if (!row) {
+          return;
+        }
+
+        const index = Number(row.getAttribute("data-index"));
+        if (!state.items[index]) {
+          return;
+        }
+
+        state.items[index].image = "";
+        renderAll();
+      }
+
+      function onItemListChange(event) {
+        const input = event.target;
+        if (input.getAttribute("data-action") !== "file") {
+          return;
+        }
+
+        const row = input.closest("[data-index]");
+        if (!row) {
+          return;
+        }
+
+        const index = Number(row.getAttribute("data-index"));
+        const file = input.files && input.files[0];
+        if (!file || !state.items[index]) {
+          return;
+        }
+
+        refs.saveStatus.textContent = "Gorsel sikistiriliyor...";
+        fileToDataUrl(file)
+          .then(function (dataUrl) {
+            state.items[index].image = dataUrl;
+            renderAll();
+          })
+          .catch(function () {
+            refs.saveStatus.textContent = "Gorsel okunamadi. Dosya veya URL ile tekrar dene.";
+          })
+          .finally(function () {
+            input.value = "";
+          });
+      }
+
+      function fileToDataUrl(file) {
+        return new Promise(function (resolve, reject) {
+          const reader = new FileReader();
+          reader.onload = function () {
+            const image = new Image();
+            image.onload = function () {
+              const maxSide = 560;
+              const scale = Math.min(1, maxSide / Math.max(image.width, image.height));
+              const canvas = document.createElement("canvas");
+              canvas.width = Math.max(1, Math.round(image.width * scale));
+              canvas.height = Math.max(1, Math.round(image.height * scale));
+              const context = canvas.getContext("2d");
+              if (!context) {
+                reject(new Error("Canvas unavailable"));
+                return;
+              }
+              context.drawImage(image, 0, 0, canvas.width, canvas.height);
+              try {
+                resolve(canvas.toDataURL("image/webp", 0.82));
+              } catch (error) {
+                resolve(canvas.toDataURL("image/jpeg", 0.82));
+              }
+            };
+            image.onerror = reject;
+            image.src = String(reader.result || "");
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function startAmbientLoop() {
+      if (ambientTimer) {
+        window.clearInterval(ambientTimer);
+      }
+
+      ambientTimer = window.setInterval(function () {
+        if (document.hidden) {
+          return;
+        }
+
+        spawnReaction();
+        maybeSpawnJoinToast();
+      }, 1100);
+      }
+
+      function burstReactions(count) {
+        if (!hasReactionEffectsEnabled()) {
+          return;
+        }
+
+        for (let index = 0; index < count; index += 1) {
+          window.setTimeout(spawnReaction, index * 120);
+        }
+      }
+
+      function hasReactionEffectsEnabled() {
+        return Boolean(state.effects.hearts || state.effects.likes);
+      }
+
+      function spawnReaction() {
+        const kinds = [];
+        if (state.effects.hearts) {
+          kinds.push("heart");
+        }
+        if (state.effects.likes) {
+          kinds.push("like");
+        }
+        if (!kinds.length || state.showFinal) {
+          return;
+        }
+
+        const reaction = document.createElement("span");
+        const kind = kinds[Math.floor(Math.random() * kinds.length)];
+        reaction.className = "reaction";
+        reaction.dataset.kind = kind;
+        reaction.innerHTML = REACTION_MARKUP[kind];
+        reaction.style.left = Math.round(18 + Math.random() * 56) + "%";
+        reaction.style.fontSize = (0.56 + Math.random() * 0.18).toFixed(2) + "rem";
+        reaction.style.setProperty("--float-time", Math.round(2200 + Math.random() * 900) + "ms");
+        reaction.style.setProperty("--drift", Math.round((Math.random() - 0.5) * 24) + "px");
+        reaction.style.setProperty("--tilt", Math.round((Math.random() - 0.5) * 12) + "deg");
+        reaction.style.setProperty("--rise", "-" + Math.round(82 + Math.random() * 34) + "px");
+        refs.reactionsLayer.appendChild(reaction);
+        reaction.addEventListener("animationend", function () {
+          reaction.remove();
+        });
+      }
+
+      function clearJoinFeed() {
+        joinToastCount = 0;
+        lastJoinName = "";
+        refs.joinFeedLayer.innerHTML = "";
+        refs.joinFeedLayer.classList.toggle("is-muted", state.showFinal || !state.effects.joins);
+      }
+
+      function maybeSpawnJoinToast() {
+        if (state.showFinal || !state.effects.joins) {
+          return;
+        }
+
+        const activeToasts = refs.joinFeedLayer.childElementCount;
+        if (activeToasts >= 3) {
+          return;
+        }
+
+        if (joinToastCount >= 10) {
+          return;
+        }
+
+        if (Math.random() > 0.46) {
+          return;
+        }
+
+        spawnJoinToast();
+      }
+
+      function spawnJoinToast() {
+        const toast = document.createElement("div");
+        const username = generateJoinUsername();
+        const action = JOIN_ACTIONS[Math.floor(Math.random() * JOIN_ACTIONS.length)];
+
+        toast.className = "join-toast";
+        toast.style.setProperty("--join-time", Math.round(3200 + Math.random() * 1200) + "ms");
+        toast.innerHTML =
+          "<span class=\"join-toast__name\">@" + escapeHtml(username) + "</span>" +
+          "<span class=\"join-toast__action\">" + escapeHtml(action) + "</span>";
+
+        refs.joinFeedLayer.appendChild(toast);
+        joinToastCount += 1;
+        lastJoinName = username;
+
+        toast.addEventListener("animationend", function () {
+          toast.remove();
+        });
+      }
+
+      function generateJoinUsername() {
+        let username = "";
+
+        while (!username || username === lastJoinName) {
+          const prefix = JOIN_NAME_PARTS_A[Math.floor(Math.random() * JOIN_NAME_PARTS_A.length)];
+          const suffix = JOIN_NAME_PARTS_B[Math.floor(Math.random() * JOIN_NAME_PARTS_B.length)];
+          const maybeNumber = Math.random() > 0.68 ? String(Math.floor(10 + Math.random() * 89)) : "";
+          username = prefix + suffix + maybeNumber;
+        }
+
+        return username.toLowerCase();
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function escapeAttribute(value) {
+        return escapeHtml(value).replace(/"/g, "&quot;");
+      }
+    })();
+  </script>
+</body>
+</html>
