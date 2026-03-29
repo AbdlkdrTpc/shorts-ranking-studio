@@ -4,6 +4,11 @@ Single-file, browser-based studio for producing 9:16 ranking videos for YouTube,
 
 Tek dosyalı, tarayıcı tabanlı, YouTube, Instagram, X ve LinkedIn üreticileri için 9:16 sıralama videoları hazırlama stüdyosu.
 
+## Live Demo / Canli Demo
+
+- [Open live demo](https://abdlkdrtpc.github.io/shorts-ranking-studio/)
+- [Canli demoyu ac](https://abdlkdrtpc.github.io/shorts-ranking-studio/)
+
 ## Preview / Onizleme
 
 ![Preview](assets/preview.png)
