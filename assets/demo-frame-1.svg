@@ -1,0 +1,22 @@
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="160" y1="120" x2="900" y2="1780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F1E8"/>
+      <stop offset="1" stop-color="#E4D1BC"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg1)"/>
+  <text x="540" y="220" text-anchor="middle" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="86" font-weight="900">En iyi kadin</text>
+  <text x="540" y="312" text-anchor="middle" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="86" font-weight="900">parfumlerini</text>
+  <text x="540" y="404" text-anchor="middle" fill="#C36D28" font-family="Segoe UI, Arial, sans-serif" font-size="86" font-weight="900">siraliyorum.</text>
+  <g transform="translate(150 520)">
+    <circle cx="18" cy="170" r="18" fill="#EBD8CB"/><circle cx="18" cy="520" r="18" fill="#EBD8CB"/><circle cx="18" cy="870" r="18" fill="#EBD8CB"/>
+    <rect x="60" y="0" width="290" height="340" rx="36" fill="#FCFBF8" stroke="#E7D7CB"/>
+    <rect x="60" y="350" width="290" height="340" rx="36" fill="#FCFBF8" stroke="#E7D7CB"/>
+    <rect x="60" y="700" width="290" height="340" rx="36" fill="#FCFBF8" stroke="#E7D7CB"/>
+    <rect x="420" y="260" width="360" height="500" rx="44" fill="#FBF6F2" stroke="#EAD6CA"/>
+    <rect x="446" y="288" width="308" height="334" rx="30" fill="#F7EAE2"/>
+    <text x="600" y="492" text-anchor="middle" fill="#8A8988" font-family="Segoe UI, Arial, sans-serif" font-size="130" font-weight="700">?</text>
+    <text x="600" y="838" text-anchor="middle" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="800">Reveal stage</text>
+  </g>
+</svg>

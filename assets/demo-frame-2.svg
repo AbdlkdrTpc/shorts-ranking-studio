@@ -1,0 +1,20 @@
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="120" y1="160" x2="920" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F2464"/>
+      <stop offset="1" stop-color="#0B0C22"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg2)"/>
+  <text x="540" y="220" text-anchor="middle" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="86" font-weight="900">Shuffle</text>
+  <text x="540" y="312" text-anchor="middle" fill="#73ECFF" font-family="Segoe UI, Arial, sans-serif" font-size="86" font-weight="900">reveal</text>
+  <g transform="translate(160 450)">
+    <rect x="420" y="250" width="320" height="440" rx="42" fill="#1A1D47" stroke="#7869FF" stroke-opacity="0.4"/>
+    <rect x="398" y="226" width="320" height="440" rx="42" fill="#262A5F" fill-opacity="0.48"/>
+    <rect x="376" y="202" width="320" height="440" rx="42" fill="#313680" fill-opacity="0.36"/>
+    <rect x="354" y="178" width="320" height="440" rx="42" fill="#121531" stroke="#9B8EFF" stroke-opacity="0.4"/>
+    <rect x="386" y="210" width="256" height="270" rx="26" fill="#292D62"/>
+    <text x="514" y="372" text-anchor="middle" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="110" font-weight="700">?</text>
+    <text x="514" y="552" text-anchor="middle" fill="#E8EBFF" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="800">Mixing items</text>
+  </g>
+</svg>

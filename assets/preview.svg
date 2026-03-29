@@ -1,0 +1,80 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="80" x2="1420" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6EEE3"/>
+      <stop offset="1" stop-color="#E6D3BF"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="980" y1="130" x2="1260" y2="670" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7F1"/>
+      <stop offset="1" stop-color="#ECD9C9"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFDFC"/>
+      <stop offset="1" stop-color="#F1E4D7"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="28" stdDeviation="36" flood-color="#51331C" flood-opacity="0.18"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#4A2D17" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" rx="40" fill="url(#bg)"/>
+  <circle cx="1350" cy="140" r="130" fill="#F2C7AA" fill-opacity="0.42"/>
+  <circle cx="160" cy="790" r="180" fill="#FFFFFF" fill-opacity="0.4"/>
+
+  <g transform="translate(110 120)">
+    <text x="0" y="0" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="4">SHORTS RANKING STUDIO</text>
+    <text x="0" y="92" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="76" font-weight="900">Create ranking videos</text>
+    <text x="0" y="176" fill="#C36D28" font-family="Segoe UI, Arial, sans-serif" font-size="76" font-weight="900">faster, cleaner, better.</text>
+    <text x="0" y="246" fill="#6A5141" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600">Built for YouTube, Instagram, X, and LinkedIn creators.</text>
+
+    <g transform="translate(0 330)">
+      <rect width="460" height="82" rx="26" fill="rgba(255,255,255,0.58)" fill-opacity="0.58" filter="url(#soft)"/>
+      <text x="34" y="51" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Shuffle reveal and live ranking</text>
+      <circle cx="420" cy="41" r="16" fill="#CB7A3E"/>
+    </g>
+
+    <g transform="translate(0 432)">
+      <rect width="460" height="82" rx="26" fill="rgba(255,255,255,0.58)" fill-opacity="0.58" filter="url(#soft)"/>
+      <text x="34" y="51" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Built-in 1080x1920 recording</text>
+      <circle cx="420" cy="41" r="16" fill="#CB7A3E"/>
+    </g>
+
+    <g transform="translate(0 534)">
+      <rect width="460" height="82" rx="26" fill="rgba(255,255,255,0.58)" fill-opacity="0.58" filter="url(#soft)"/>
+      <text x="34" y="51" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Webcam bubble and ambient effects</text>
+      <circle cx="420" cy="41" r="16" fill="#CB7A3E"/>
+    </g>
+  </g>
+
+  <g transform="translate(930 78)" filter="url(#shadow)">
+    <rect width="430" height="744" rx="24" fill="url(#accent)"/>
+    <text x="72" y="90" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="58" font-weight="900">En iyi kadin</text>
+    <text x="72" y="152" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="58" font-weight="900">parfumlerini</text>
+    <text x="72" y="214" fill="#C36D28" font-family="Segoe UI, Arial, sans-serif" font-size="58" font-weight="900">siraliyorum.</text>
+
+    <g transform="translate(48 274)">
+      <circle cx="8" cy="62" r="8" fill="#E6CFC0"/>
+      <circle cx="8" cy="222" r="8" fill="#E6CFC0"/>
+      <circle cx="8" cy="382" r="8" fill="#E6CFC0"/>
+
+      <rect x="28" y="0" width="140" height="140" rx="22" fill="url(#card)" stroke="#E7D7CB"/>
+      <rect x="28" y="160" width="140" height="140" rx="22" fill="url(#card)" stroke="#E7D7CB"/>
+      <rect x="28" y="320" width="140" height="140" rx="22" fill="url(#card)" stroke="#E7D7CB"/>
+
+      <rect x="210" y="118" width="182" height="238" rx="28" fill="#FBF6F2" stroke="#EBD7CA"/>
+      <rect x="225" y="135" width="152" height="164" rx="22" fill="#F9ECE5"/>
+      <text x="302" y="236" text-anchor="middle" fill="#8A8988" font-family="Segoe UI, Arial, sans-serif" font-size="74" font-weight="700">?</text>
+      <text x="302" y="391" text-anchor="middle" fill="#2F1F14" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="800">Tap to reveal</text>
+    </g>
+
+    <g transform="translate(320 635)">
+      <circle cx="34" cy="34" r="34" fill="#FFFFFF" fill-opacity="0.86"/>
+      <circle cx="34" cy="34" r="29" fill="#D8B59C"/>
+      <circle cx="34" cy="28" r="9" fill="#8A5E47"/>
+      <path d="M18 48c7-8 26-8 33 0" stroke="#8A5E47" stroke-width="6" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
