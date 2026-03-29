@@ -430,6 +430,11 @@
       grid-column: 1 / -1;
     }
 
+    .action-stack {
+      display: grid;
+      gap: 8px;
+    }
+
     .recording-status.is-live {
       color: var(--danger);
       font-weight: 800;
@@ -2123,6 +2128,9 @@
             <button class="btn btn--secondary" id="resetBtn" type="button">Oyunu sifirla</button>
             <button class="btn btn--ghost" id="fillBtn" type="button">Ornek metinleri yenile</button>
           </section>
+          <div class="action-stack">
+            <button class="btn btn--ghost" id="clearStorageBtn" type="button">Tum yerel veriyi temizle</button>
+          </div>
           <p class="save-status" id="saveStatus">Ayarlar bu tarayicida saklanir.</p>
 
           <div class="panel-divider"></div>
@@ -2311,6 +2319,7 @@
         recordToggleBtn: document.getElementById("recordToggleBtn"),
         resetBtn: document.getElementById("resetBtn"),
         fillBtn: document.getElementById("fillBtn"),
+        clearStorageBtn: document.getElementById("clearStorageBtn"),
         captureMicToggle: document.getElementById("captureMicToggle"),
         captureVideoAudioToggle: document.getElementById("captureVideoAudioToggle"),
         startCaptureBtn: document.getElementById("startCaptureBtn"),
@@ -2495,6 +2504,7 @@
           resetGame(true);
         });
         refs.fillBtn.addEventListener("click", refillItemTexts);
+        refs.clearStorageBtn.addEventListener("click", clearStoredStudioData);
         refs.startCaptureBtn.addEventListener("click", startStudioCapture);
         refs.stopCaptureBtn.addEventListener("click", stopStudioCapture);
         refs.downloadCaptureBtn.addEventListener("click", downloadStudioCapture);
@@ -4187,6 +4197,20 @@
         if (saveAfter !== false) {
           saveState();
         }
+      }
+
+      function clearStoredStudioData() {
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (error) {}
+
+        clearBackgroundPreviewAsset();
+        stopStudioCapture(true);
+        stopCameraStream();
+        state = normalizeState(defaultState());
+        refs.backgroundAssetInput.value = "";
+        renderAll();
+        refs.saveStatus.textContent = "Tum yerel veriler temizlendi.";
       }
 
       function updatePlacementMode(mode, checked) {
