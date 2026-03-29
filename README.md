@@ -1,6 +1,6 @@
 # Shorts Ranking Studio
 
-Single-file, browser-based studio for producing 9:16 ranking videos for YouTube Shorts, TikTok, and Reels.
+Single-file, browser-based studio for producing 9:16 ranking videos for YouTube, Instagram, X, and LinkedIn creators.
 
 ## What It Does
 
@@ -9,6 +9,13 @@ Single-file, browser-based studio for producing 9:16 ranking videos for YouTube 
 - Reveals items with shuffle animation and lets you rank them live
 - Includes optional hearts, likes, join toasts, transparent stage mode, and mini camera bubble
 - Records the stage as a dedicated 1080x1920 export with microphone, effects, background media, and webcam bubble
+
+## Target Audience
+
+- X creators building fast, debate-driven ranking posts and video clips
+- LinkedIn creators packaging opinionated ranked content in a cleaner visual format
+- YouTube creators producing Shorts around rankings, comparisons, and hot takes
+- Instagram creators publishing Reels around beauty, culture, food, sports, and entertainment
 
 ## Main File
 
@@ -35,6 +42,13 @@ Single-file, browser-based studio for producing 9:16 ranking videos for YouTube 
 - Best songs ranking
 - Hot takes, comparisons, and community debate content
 
+## Target Platforms
+
+- X
+- LinkedIn
+- YouTube
+- Instagram
+
 ## Positioning
 
 This project is not a generic randomizer. It is a creator tool designed specifically for fast, repeatable short-form ranking videos.
@@ -42,6 +56,5 @@ This project is not a generic randomizer. It is a creator tool designed specific
 ## Suggested Repo Metadata
 
 - Name: `shorts-ranking-studio`
-- Short description: `A single-file 9:16 ranking video studio for YouTube Shorts, TikTok, and Reels.`
-- Topics: `youtube-shorts`, `shorts`, `tiktok`, `reels`, `ranking`, `creator-tools`, `html`, `javascript`, `single-file`, `video-tools`
-
+- Short description: `A single-file 9:16 ranking video studio for YouTube, Instagram, X, and LinkedIn creators.`
+- Topics: `youtube-shorts`, `instagram-reels`, `x`, `linkedin`, `ranking`, `creator-tools`, `html`, `javascript`, `single-file`, `video-tools`
